@@ -1,0 +1,42 @@
+$topnav-background-color: #222;
+:host {
+    display: block;
+}
+
+.status-page {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    background: $topnav-background-color;
+    text-align: center;
+    color: #fff;
+    padding: 30px;
+    .col-lg-4 {
+        padding: 0;
+    }
+}
+
+.statusUpdateInfo {
+    margin: 0;
+    color: #013763;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.header {
+    // height: 106px;
+    height: calc(0.15*100%);
+    background-color: white;
+}
+
+.status {
+    height: 30%;
+}
+
+.temp {
+    min-height: calc(100% - (30% + 15% + 30px));
+}

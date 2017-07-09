@@ -1,0 +1,33 @@
+:host {
+  display: block;
+}
+
+.status-page {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  background: #222;
+  text-align: center;
+  color: #fff;
+  padding: 30px;
+}
+
+.status-page .col-lg-4 {
+  padding: 0;
+}
+
+.header {
+  height: 106px;
+  background-color: white;
+}
+
+.status {
+  height: 30%;
+}
+
+.temp {
+  height: calc(100% - (30% + 30px + 122px));
+}
