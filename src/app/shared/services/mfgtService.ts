@@ -12,7 +12,7 @@ export class MfgtService {
 
     getStatus(): Observable<any> {
 
-      var url = "http://api.mfgt.ch/api/v1/aerodromestatus";
+      var url = "https://api.mfgt.ch/api/v1/aerodromestatus";
 
       return this.http
                 .get(url)
