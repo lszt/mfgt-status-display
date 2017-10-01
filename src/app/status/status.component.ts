@@ -11,6 +11,7 @@ export class StatusComponent implements OnInit {
     mfgtService: MfgtService;
     status: any;
     statusColor: any;
+    reservations: any;
 
     constructor(public router: Router, mfgtService: MfgtService) { 
         this.mfgtService = mfgtService;
@@ -22,7 +23,7 @@ export class StatusComponent implements OnInit {
 
         setInterval(()=>{
             this.showStatus();
-        }, 10000);
+        }, 1000000);
     }
 
     showStatus(){
@@ -48,6 +49,25 @@ export class StatusComponent implements OnInit {
                                 "last_update_by": "SYSTEM"
                             };
             } 
+        );
+
+        this.mfgtService.getAerodromeWeather()
+            .subscribe((data) => {
+
+            },
+            (error) => {
+
+            }
+        );
+
+        this.mfgtService.getClubReservations()
+            .subscribe((data) => {
+                this.reservations = data;
+                this.reservations["error"] = "";
+            },
+            (error) => {
+                this.reservations["error"] = "RESERVATIONS not available";
+            }
         );
     }
 }

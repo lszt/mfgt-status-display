@@ -1,0 +1,177 @@
+Salue Angelo,
+
+Bist du schon weiter? Der Bildschirm in Lommis steht bereit? :)
+
+GRuss,
+philipp
+
+On Mon, Jul 17, 2017 at 3:26 PM, Philipp Hug <philipp@hug.cx> wrote:
+Salue Angelo,
+
+Kleines Update. Ich habe das Wetter-API vorbereitet.
+Sieht dann so aus:
+POST https://api.mfgt.ch/api/v1/aerodromeweather
+{"Temperature":26.5,"Humidity":48,"Pressure":1025.9,"WindAngle":51,"WindStrength":6,"GustAngle":27,"GustStrength":14}
+
+Auch habe ich gesehen, dass du das httpS vergessen hast in der URL, darum klappts nicht :)
+
+gruss,
+philipp
+
+On Tue, Jun 13, 2017 at 2:38 PM, Philipp Hug <philipp@hug.cx> wrote:
+Salue Angelo,
+
+Die Wetterstation ist installiert....
+API funktioniert, jetzt muss ich noch einen Wrapper erstellen, damit das einfach auslesbar ist.
+
+gruss,
+philipp
+
+
+{
+    "body": {
+        "devices": [
+            {
+                "_id": "70:ee:50:22:ac:9a",
+                "cipher_id": "enc:16:fLoaW7oNmuQPiZKUqNypeIGzToOAOdSBdkzcaj2LwxrG4xkMoeNtLxEOVYgmXW4X",
+                "last_status_store": 1497357074,
+                "modules": [
+                    {
+                        "_id": "02:00:00:22:e1:c2",
+                        "type": "NAModule1",
+                        "last_message": 1497357070,
+                        "last_seen": 1497357057,
+                        "dashboard_data": {
+                            "time_utc": 1497357057,
+                            "Temperature": 27.8,
+                            "temp_trend": "down",
+                            "Humidity": 45,
+                            "date_max_temp": 1497344906,
+                            "date_min_temp": 1497327628,
+                            "min_temp": 17.1,
+                            "max_temp": 29.5
+                        },
+                        "data_type": [
+                            "Temperature",
+                            "Humidity"
+                        ],
+                        "module_name": "Outdoor",
+                        "last_setup": 1496771708,
+                        "battery_vp": 6224,
+                        "battery_percent": 100,
+                        "rf_status": 53,
+                        "firmware": 44
+                    },
+                    {
+                        "_id": "05:00:00:02:dc:8e",
+                        "type": "NAModule3",
+                        "last_message": 1497357070,
+                        "last_seen": 1497357063,
+                        "dashboard_data": {
+                            "time_utc": 1497357063,
+                            "Rain": 0,
+                            "sum_rain_24": 0,
+                            "sum_rain_1": 0
+                        },
+                        "data_type": [
+                            "Rain"
+                        ],
+                        "module_name": "Regen",
+                        "last_setup": 1496773761,
+                        "battery_vp": 6302,
+                        "battery_percent": 100,
+                        "rf_status": 29,
+                        "firmware": 8
+                    },
+                    {
+                        "_id": "06:00:00:02:25:98",
+                        "type": "NAModule2",
+                        "last_message": 1497357070,
+                        "last_seen": 1497357070,
+                        "dashboard_data": {
+                            "WindAngle": 350,
+                            "WindStrength": 5,
+                            "GustAngle": 34,
+                            "GustStrength": 12,
+                            "time_utc": 1497357063,
+                            "WindHistoric": [xxx
+                            ],
+                            "date_max_wind_str": 1497334325,
+                            "date_max_temp": 1497304981,
+                            "date_min_temp": 1497304981,
+                            "min_temp": 0,
+                            "max_temp": 0,
+                            "max_wind_angle": 11,
+                            "max_wind_str": 18
+                        },
+                        "data_type": [
+                            "Wind"
+                        ],
+                        "module_name": "Wind",
+                        "last_setup": 1497182595,
+                        "battery_vp": 6323,
+                        "battery_percent": 100,
+                        "rf_status": 61,
+                        "firmware": 18
+                    }
+                ],
+                "place": {
+                    "altitude": 514.70001220703,
+                    "city": "Lommis",
+                    "country": "CH",
+                    "timezone": "Europe/Amsterdam",
+                    "location": [
+                        8.999642,
+                        47.5239929
+                    ]
+                },
+                "station_name": "Flugplatz Lommis (LSZT)",
+                "type": "NAMain",
+                "dashboard_data": {
+                    "AbsolutePressure": 961.6,
+                    "time_utc": 1497357064,
+                    "Noise": 50,
+                    "Temperature": 27.6,
+                    "temp_trend": "up",
+                    "Humidity": 45,
+                    "Pressure": 1022.4,
+                    "pressure_trend": "stable",
+                    "CO2": 455,
+                    "date_max_temp": 1497357064,
+                    "date_min_temp": 1497338883,
+                    "min_temp": 23.5,
+                    "max_temp": 27.6
+                },
+                "data_type": [
+                    "Temperature",
+                    "CO2",
+                    "Humidity",
+                    "Noise",
+                    "Pressure"
+                ],
+                "co2_calibrating": false,
+                "date_setup": 1496771708,
+                "last_setup": 1496771708,
+                "module_name": "Indoor",
+                "firmware": 132,
+                "last_upgrade": 1497181602,
+                "wifi_status": 65
+            }
+        ],
+        "user": {
+            "mail": "admin@mfgt.ch",
+            "administrative": {
+                "lang": "en-GB",
+                "reg_locale": "de-CH",
+                "unit": 0,
+                "windunit": 4,
+                "pressureunit": 0,
+                "feel_like_algo": 0
+            }
+        }
+    },
+    "status": "ok",
+    "time_exec": 0.045042991638184,
+    "time_server": 1497357186
+}
+

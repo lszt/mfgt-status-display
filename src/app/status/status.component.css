@@ -12,15 +12,28 @@
   background: #222;
   text-align: center;
   color: #fff;
-  padding: 30px;
+  padding: 20px;
+  margin: 0;
 }
 
 .status-page .col-lg-4 {
   padding: 0;
 }
 
+.statusUpdateInfo {
+  margin: 0;
+  color: #013763;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.alert {
+  margin-bottom: 10px;
+}
+
 .header {
-  height: 106px;
+  height: 15%;
   background-color: white;
 }
 
@@ -28,6 +41,22 @@
   height: 30%;
 }
 
-.temp {
-  height: calc(100% - (30% + 30px + 122px));
+.temperature {
+  height: 20%;
+}
+
+.reserv {
+  height: calc(100% - (15% + 30% + 20% + 30px));
+}
+
+.reservtable {
+  border-collapse: initial;
+  border-spacing: 0;
+  width: 100%;
+  font-size: 2.5vmin;
+}
+
+.reservtable td div {
+  text-align: left;
+  padding-right: 50px;
 }

@@ -1,0 +1,4 @@
+MFGT Reservationen API
+
+Bestimmter Tag: https://api.mfgt.ch/api/v1/reservations/20170410
+Aktueller Tag: https://api.mfgt.ch/api/v1/reservations

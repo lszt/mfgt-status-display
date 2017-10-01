@@ -14,9 +14,47 @@
         <!--<p style="margin: 0;">{{status.last_update_date |date:'dd.MM.yyyy HH:mm'}}, {{status.last_update_by}}</p>-->
     </div>
 
-    <div class="alert temp" style="background-color: white;">
+    <div class="alert temperature" style="background-color: white;">
+        <table>
+            <tr>
+                <th>
+                    <div>Temperatur</div>
+                </th>
+                <th><div>Von</div></th>
+                <th><div>Bis</div></th>
+                <th><div>Pilot</div></th>
+                <th><div>Ziel</div></th>
+                <th><div>Flugtyp</div></th>
+        </tr>
+            <tr>
 
+            </tr>
+        </table>
     </div>
 
+    <div class="alert reserv" style="background-color: white; color: black;">
+        <h2 style="text-align: left;font-weight: bold;">Geplante Flüge</h2>
+        <div>
+            <table class="reservtable">
+                <tr style="background-color: lightgray;">
+                    <th><div>Flugzeug</div></th>
+                    <th><div>Von</div></th>
+                    <th><div>Bis</div></th>
+                    <th><div>Pilot</div></th>
+                    <th><div>Ziel</div></th>
+                    <th><div>Flugtyp</div></th>
+                </tr>
+                <tr *ngFor="let reservation of reservations">
+                    <td><div>{{reservation.Registration}}</div></td>
+                    <td><div>{{reservation.ReservationStart | date:"HH:mm"}}</div></td>
+                    <td><div>{{reservation.ReservationEnd | date:"HH:mm"}}</div></td>
+                    <td><div>{{reservation.Pilot}}</div></td>
+                    <td><div>{{reservation.Destination}}</div></td>
+                    <td><div>{{reservation.TypeOfFlight}}</div></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+        
 
 </div>

@@ -13,7 +13,8 @@ $topnav-background-color: #222;
     background: $topnav-background-color;
     text-align: center;
     color: #fff;
-    padding: 30px;
+    padding: 20px;
+    margin: 0;
     .col-lg-4 {
         padding: 0;
     }
@@ -27,9 +28,13 @@ $topnav-background-color: #222;
     right: 0;
 }
 
+.alert {
+    margin-bottom: 10px;
+}
+
 .header {
     // height: 106px;
-    height: calc(0.15*100%);
+    height: 15%;
     background-color: white;
 }
 
@@ -37,6 +42,23 @@ $topnav-background-color: #222;
     height: 30%;
 }
 
-.temp {
-    min-height: calc(100% - (30% + 15% + 30px));
+.temperature {
+    height: 20%;
 }
+  
+.reserv {
+    height: calc(100% - (15% + 30% + 20% + 30px));
+}
+
+.reservtable {
+    border-collapse: initial;
+    border-spacing: 0;
+    width: 100%;
+    font-size: 2.5vmin;
+}
+
+.reservtable td div {
+    text-align:left;
+    padding-right:50px;
+}
+  
