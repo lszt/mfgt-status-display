@@ -24,7 +24,7 @@ export class StatusComponent implements OnInit {
 
         setInterval(()=>{
             this.showStatus();
-        }, 1000000);
+        }, 20000);
     }
 
     showStatus(){
