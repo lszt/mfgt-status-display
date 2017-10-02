@@ -64,6 +64,10 @@ $topnav-background-color: #222;
     font-variant: small-caps;
 }
 
+.temperaturetable td img {
+    height: 17%;
+}
+
 .reserv {
     height: calc(100% - (15% + 25% + 20% + 30px));
 }
