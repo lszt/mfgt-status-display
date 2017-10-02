@@ -18,6 +18,23 @@
         <table class="temperaturetable">
             <tr>
                 <td>
+                    <img src="assets/images/thermometer.png" style="width:25%;">
+                </td>
+                <td>
+                    <img src="assets/images/humidity.png" style="width:25%;">
+                </td>
+                <td>
+                    <img src="assets/images/pressure.png" style="width:25%;">
+                </td>
+                <td>
+                    <img src="assets/images/wind.png" style="width:25%;">
+                </td>
+                <td>
+                    <img src="assets/images/gusts.png" style="width:25%;">
+                </td>
+            </tr>
+            <tr>
+                <td>
                     <div>Temperatur</div>
                 </td>
                 <td>
@@ -71,10 +88,10 @@
     </div>
 
     <div class="alert reserv" style="background-color:white; color:black;">
-        <h2 style="text-align: left;font-weight: bold;">Geplante Flüge</h2>
+        <h2 style="text-align: left;font-weight: bold; font-variant: small-caps;font-size: 3vmin">GEPLANTE FLÜGE</h2>
         <div>
-            <table class="reservtable">
-                <tr style="background-color: lightgray;">
+            <table class=" reservtable ">
+                <tr style="background-color: lightgray; ">
                     <th>
                         <div>Flugzeug</div>
                     </th>
@@ -94,15 +111,15 @@
                         <div>Flugtyp</div>
                     </th>
                 </tr>
-                <tr *ngFor="let reservation of reservations">
+                <tr *ngFor="let reservation of reservations ">
                     <td>
                         <div>{{reservation.Registration}}</div>
                     </td>
                     <td>
-                        <div>{{reservation.ReservationStart | date:"HH:mm"}}</div>
+                        <div>{{reservation.ReservationStart | date:"HH:mm "}}</div>
                     </td>
                     <td>
-                        <div>{{reservation.ReservationEnd | date:"HH:mm"}}</div>
+                        <div>{{reservation.ReservationEnd | date:"HH:mm "}}</div>
                     </td>
                     <td>
                         <div>{{reservation.Pilot}}</div>

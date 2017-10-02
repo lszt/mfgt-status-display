@@ -39,7 +39,8 @@ $topnav-background-color: #222;
 }
 
 .status {
-    height: 30%;
+    height: 25%;
+    font-variant: small-caps;
 }
 
 .temperature {
@@ -60,10 +61,11 @@ $topnav-background-color: #222;
 .temperaturetable td div {
     text-align: center;
     font-weight: bolder;
+    font-variant: small-caps;
 }
 
 .reserv {
-    height: calc(100% - (15% + 30% + 20% + 30px));
+    height: calc(100% - (15% + 25% + 20% + 30px));
 }
 
 .reservtable {
@@ -73,7 +75,12 @@ $topnav-background-color: #222;
     font-size: 2.5vmin;
 }
 
+.reservtable th {
+    font-variant: small-caps;
+}
+
 .reservtable td div {
+    font-variant: small-caps;
     text-align: left;
     padding-right: 50px;
 }
