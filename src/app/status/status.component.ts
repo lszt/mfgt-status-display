@@ -31,21 +31,31 @@ export class StatusComponent implements OnInit {
         this.mfgtService.getStatus()
             .subscribe((data) => {
                 this.status = data;
+                this.status["statusHidden"] = false;
+
+                // override for tests the status
+                //this.status.status = "restricted";  
+                //this.status.message = "TEST das ist eine Zeile \r\nZweite Zeile definiert\r\nUnd eine dritte Zeile";
 
                 if (this.status.status == 'open'){
                     this.status["statusColor"] = "alert-success";
+                    this.status["statusText"] = "Flugplatz offen";
+                    this.status.statusHidden = true;
                 }
                 else if (this.status.status == "restricted") {
                     this.status["statusColor"] = "alert-warning";
+                    this.status["statusText"] = "Flugplatz eingeschränkt";
                 }
                 else { // closed
                     this.status["statusColor"] = "alert-danger";
+                    this.status["statusText"] = "Flugplatz geschlossen";
                 }
             },
             (error) => {
                 this.status = { 
-                                "message": "STATUS not available",
+                                "message": "",
                                 "statusColor": "alert-danger",
+                                "statusText": "STATUS not available",
                                 "last_update_date": Date.now(),
                                 "last_update_by": "SYSTEM"
                             };
@@ -64,7 +74,12 @@ export class StatusComponent implements OnInit {
 
         this.mfgtService.getClubReservations()
             .subscribe((data) => {
-                this.reservations = data;
+                //sort reservations by start time
+                this.reservations = data.sort(function(a,b) {
+                    var c = new Date(a.ReservationStart);
+                    var d = new Date(b.ReservationStart);
+                    return c.getTime()-d.getTime();
+                });
                 this.reservations["error"] = "";
             },
             (error) => {

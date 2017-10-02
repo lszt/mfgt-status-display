@@ -10,8 +10,8 @@
         </div>
     </div>
     <div class="alert status" [ngClass]="status.statusColor" style="display: table; width: 100%;">
-        <p style="font-size: 14vmin; white-space: nowrap;"><strong>{{status.message}}</strong></p>
-        <!-- <p style="margin: 0;">{{status.last_update_date |date:'dd.MM.yyyy HH:mm'}}, {{status.last_update_by}}</p> -->
+        <p style="font-size: 13vmin;white-space: wrap;line-height: 1em;"><strong>{{status.statusText}}</strong></p>
+        <p [hidden]="status.statusHidden" style="margin: 0;font-size:x-large;font-weight:bolder;">{{status.message}}</p>
     </div>
 
     <div class="alert temperature" style="background-color:white; color:black;">
@@ -72,7 +72,7 @@
                     <div>°C</div>
                 </td>
                 <td>
-                    <div>°C</div>
+                    <div>%</div>
                 </td>
                 <td>
                     <div>hPa</div>
