@@ -12,6 +12,7 @@ export class StatusComponent implements OnInit {
     status: any;
     statusColor: any;
     reservations: any;
+    aerodromeweather: any;
 
     constructor(public router: Router, mfgtService: MfgtService) { 
         this.mfgtService = mfgtService;
@@ -53,10 +54,11 @@ export class StatusComponent implements OnInit {
 
         this.mfgtService.getAerodromeWeather()
             .subscribe((data) => {
-
+                this.aerodromeweather = data;
+                this.aerodromeweather["error"] = "";
             },
             (error) => {
-
+                this.aerodromeweather["error"] = "WEATHER data not available";
             }
         );
 

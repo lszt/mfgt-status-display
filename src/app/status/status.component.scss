@@ -45,7 +45,23 @@ $topnav-background-color: #222;
 .temperature {
     height: 20%;
 }
-  
+
+.temperaturetable {
+    border-collapse: initial;
+    border-spacing: 0;
+    width: 100%;
+    font-size: 2.5vmin;
+}
+
+.temperaturetable td {
+    width: 20%;
+}
+
+.temperaturetable td div {
+    text-align: center;
+    font-weight: bolder;
+}
+
 .reserv {
     height: calc(100% - (15% + 30% + 20% + 30px));
 }
@@ -58,7 +74,6 @@ $topnav-background-color: #222;
 }
 
 .reservtable td div {
-    text-align:left;
-    padding-right:50px;
+    text-align: left;
+    padding-right: 50px;
 }
-  

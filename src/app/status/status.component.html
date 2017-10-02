@@ -10,51 +10,113 @@
         </div>
     </div>
     <div class="alert status" [ngClass]="status.statusColor" style="display: table; width: 100%;">
-        <p style="font-size: 15vmin"><strong>{{status.message}}</strong></p>
-        <!--<p style="margin: 0;">{{status.last_update_date |date:'dd.MM.yyyy HH:mm'}}, {{status.last_update_by}}</p>-->
+        <p style="font-size: 14vmin; white-space: nowrap;"><strong>{{status.message}}</strong></p>
+        <!-- <p style="margin: 0;">{{status.last_update_date |date:'dd.MM.yyyy HH:mm'}}, {{status.last_update_by}}</p> -->
     </div>
 
-    <div class="alert temperature" style="background-color: white;">
-        <table>
+    <div class="alert temperature" style="background-color:white; color:black;">
+        <table class="temperaturetable">
             <tr>
-                <th>
+                <td>
                     <div>Temperatur</div>
-                </th>
-                <th><div>Von</div></th>
-                <th><div>Bis</div></th>
-                <th><div>Pilot</div></th>
-                <th><div>Ziel</div></th>
-                <th><div>Flugtyp</div></th>
-        </tr>
+                </td>
+                <td>
+                    <div>Luftfeuchtigkeit</div>
+                </td>
+                <td>
+                    <div>QNH</div>
+                </td>
+                <td>
+                    <div>Wind</div>
+                </td>
+                <td>
+                    <div>Gusts</div>
+                </td>
+            </tr>
             <tr>
-
+                <td>
+                    <div>{{aerodromeweather.Temperature}}</div>
+                </td>
+                <td>
+                    <div>{{aerodromeweather.Humidity}}</div>
+                </td>
+                <td>
+                    <div>{{aerodromeweather.Pressure}}</div>
+                </td>
+                <td>
+                    <div>{{aerodromeweather.WindAngle}}°</div>
+                </td>
+                <td>
+                    <div>{{aerodromeweather.GustAngle}}°</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div>°C</div>
+                </td>
+                <td>
+                    <div>°C</div>
+                </td>
+                <td>
+                    <div>hPa</div>
+                </td>
+                <td>
+                    <div>{{aerodromeweather.WindStrength}}kt</div>
+                </td>
+                <td>
+                    <div>{{aerodromeweather.GustStrength}}kt</div>
+                </td>
             </tr>
         </table>
     </div>
 
-    <div class="alert reserv" style="background-color: white; color: black;">
+    <div class="alert reserv" style="background-color:white; color:black;">
         <h2 style="text-align: left;font-weight: bold;">Geplante Flüge</h2>
         <div>
             <table class="reservtable">
                 <tr style="background-color: lightgray;">
-                    <th><div>Flugzeug</div></th>
-                    <th><div>Von</div></th>
-                    <th><div>Bis</div></th>
-                    <th><div>Pilot</div></th>
-                    <th><div>Ziel</div></th>
-                    <th><div>Flugtyp</div></th>
+                    <th>
+                        <div>Flugzeug</div>
+                    </th>
+                    <th>
+                        <div>Von</div>
+                    </th>
+                    <th>
+                        <div>Bis</div>
+                    </th>
+                    <th>
+                        <div>Pilot</div>
+                    </th>
+                    <th>
+                        <div>Ziel</div>
+                    </th>
+                    <th>
+                        <div>Flugtyp</div>
+                    </th>
                 </tr>
                 <tr *ngFor="let reservation of reservations">
-                    <td><div>{{reservation.Registration}}</div></td>
-                    <td><div>{{reservation.ReservationStart | date:"HH:mm"}}</div></td>
-                    <td><div>{{reservation.ReservationEnd | date:"HH:mm"}}</div></td>
-                    <td><div>{{reservation.Pilot}}</div></td>
-                    <td><div>{{reservation.Destination}}</div></td>
-                    <td><div>{{reservation.TypeOfFlight}}</div></td>
+                    <td>
+                        <div>{{reservation.Registration}}</div>
+                    </td>
+                    <td>
+                        <div>{{reservation.ReservationStart | date:"HH:mm"}}</div>
+                    </td>
+                    <td>
+                        <div>{{reservation.ReservationEnd | date:"HH:mm"}}</div>
+                    </td>
+                    <td>
+                        <div>{{reservation.Pilot}}</div>
+                    </td>
+                    <td>
+                        <div>{{reservation.Destination}}</div>
+                    </td>
+                    <td>
+                        <div>{{reservation.TypeOfFlight}}</div>
+                    </td>
                 </tr>
             </table>
         </div>
     </div>
-        
+
 
 </div>
