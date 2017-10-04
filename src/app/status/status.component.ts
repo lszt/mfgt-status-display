@@ -10,11 +10,12 @@ import { MfgtService } from "app/shared/services/mfgtService";
 export class StatusComponent implements OnInit {
     mfgtService: MfgtService;
     status: any;
+    showEvents: boolean;
     statusColor: any;
     reservations: any;
     aerodromeweather: any;
 
-    constructor(public router: Router, mfgtService: MfgtService) { 
+    constructor(public router: Router, mfgtService: MfgtService) {
         this.mfgtService = mfgtService;
         this.status = {};
     }
@@ -28,19 +29,28 @@ export class StatusComponent implements OnInit {
     }
 
     showStatus(){
+        this.showEvents = false;
+
         this.mfgtService.getStatus()
             .subscribe((data) => {
                 this.status = data;
                 this.status["statusHidden"] = false;
 
-                // override for tests the status
-                //this.status.status = "restricted";  
+                // TEST status -> override for tests
+                //this.status.status = "restricted";
                 //this.status.message = "TEST das ist eine Zeile \r\nZweite Zeile definiert\r\nUnd eine dritte Zeile";
+                //this.status.message = "Flugplatz offen\r\\r\n";
+
+                var messageLines = this.status.message.split("\r\n");
+                this.status.message = "";
+                for(var i=1; i<messageLines.length; i++){
+                    this.status.message += messageLines[i] + "\r\n";
+                }
 
                 if (this.status.status == 'open'){
                     this.status["statusColor"] = "alert-success";
                     this.status["statusText"] = "Flugplatz offen";
-                    this.status.statusHidden = true;
+                    //this.status.statusHidden = true;
                 }
                 else if (this.status.status == "restricted") {
                     this.status["statusColor"] = "alert-warning";
@@ -52,14 +62,14 @@ export class StatusComponent implements OnInit {
                 }
             },
             (error) => {
-                this.status = { 
+                this.status = {
                                 "message": "",
                                 "statusColor": "alert-danger",
                                 "statusText": "STATUS not available",
                                 "last_update_date": Date.now(),
                                 "last_update_by": "SYSTEM"
                             };
-            } 
+            }
         );
 
         this.mfgtService.getAerodromeWeather()

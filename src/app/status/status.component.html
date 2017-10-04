@@ -11,7 +11,14 @@
     </div>
     <div class="alert status" [ngClass]="status.statusColor" style="display: table; width: 100%;">
         <p style="font-size: 13vmin;white-space: wrap;line-height: 1em;"><strong>{{status.statusText}}</strong></p>
-        <p [hidden]="status.statusHidden" style="margin: 0;font-size:x-large;font-weight:bolder;">{{status.message}}</p>
+        <p [hidden]="status.statusHidden" style="margin: 0;font-size:x-large;font-weight:bolder;background-color:white;color:black; border-radius: 5px;">{{status.message}}</p>
+    </div>
+
+    <div [hidden]="!showEvents" class="alert" style="background-color:white; color:black;font-variant: small-caps;">
+        <h2 style="text-align: left;font-weight: bold; font-variant: small-caps;font-size: 3vmin">AKTUELLE EVENTS</h2>
+        <div style="text-align: left;font-variant: small-caps;">
+            Test Test Test
+        </div>
     </div>
 
     <div class="alert temperature" style="background-color:white; color:black;">
