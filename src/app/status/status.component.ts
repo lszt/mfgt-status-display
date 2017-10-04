@@ -34,23 +34,25 @@ export class StatusComponent implements OnInit {
         this.mfgtService.getStatus()
             .subscribe((data) => {
                 this.status = data;
-                this.status["statusHidden"] = false;
 
                 // TEST status -> override for tests
                 //this.status.status = "restricted";
+                //this.status.message = "Flugplatz offen\r\n\r\n";
+                //this.status.message = "TEST das ist eine Zeile \r\nZweite Zeile definiert\r\n";
                 //this.status.message = "TEST das ist eine Zeile \r\nZweite Zeile definiert\r\nUnd eine dritte Zeile";
-                //this.status.message = "Flugplatz offen\r\\r\n";
 
                 var messageLines = this.status.message.split("\r\n");
                 this.status.message = "";
                 for(var i=1; i<messageLines.length; i++){
-                    this.status.message += messageLines[i] + "\r\n";
+                    if (i>1 && messageLines[i] !== ""){
+                        this.status.message += "\r\n";
+                    }
+                    this.status.message += messageLines[i];
                 }
 
                 if (this.status.status == 'open'){
                     this.status["statusColor"] = "alert-success";
                     this.status["statusText"] = "Flugplatz offen";
-                    //this.status.statusHidden = true;
                 }
                 else if (this.status.status == "restricted") {
                     this.status["statusColor"] = "alert-warning";
