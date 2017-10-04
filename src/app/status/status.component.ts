@@ -78,6 +78,9 @@ export class StatusComponent implements OnInit {
             .subscribe((data) => {
                 this.aerodromeweather = data;
                 this.aerodromeweather["error"] = "";
+
+                this.aerodromeweather.WindAngle  = this.formatWindDirection(data.WindAngle);
+                this.aerodromeweather.GustAngle  = this.formatWindDirection(data.GustAngle);
             },
             (error) => {
                 this.aerodromeweather["error"] = "WEATHER data not available";
@@ -92,11 +95,35 @@ export class StatusComponent implements OnInit {
                     var d = new Date(b.ReservationStart);
                     return c.getTime()-d.getTime();
                 });
+
+                //remove reservation after the end time
+                var now = new Date(Date.now()).getTime();
+                this.reservations = this.reservations.filter(function(e) {
+                    var dateStart = new Date(e.ReservationStart).getTime();
+                    var dateEnd = new Date(e.ReservationEnd).getTime();
+                    
+                    // mark flight as multi day flight if diff > 24h
+                    e["Multidayflight"] = false;
+                    let time = dateEnd - dateStart;  //msec
+                    let hoursDiff = time / (3600 * 1000);
+                    if (hoursDiff >= 24) {
+                        e.Multidayflight = true;
+                    }
+                    
+                    return dateEnd > now;
+                });
+
                 this.reservations["error"] = "";
             },
             (error) => {
                 this.reservations["error"] = "RESERVATIONS not available";
             }
         );
+    }
+
+    formatWindDirection(direction) {
+        var str = "" + direction;
+        var pad = "000";
+        return pad.substring(0, pad.length - str.length) + str;
     }
 }

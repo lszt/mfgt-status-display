@@ -72,7 +72,7 @@ export class MfgtService {
     }
 
     getClubReservations(): Observable<any> {
-        //var url = "https://api.mfgt.ch/api/v1/reservations/20171004";  // specific day
+        //var url = "https://api.mfgt.ch/api/v1/reservations/20171006";  // specific day
         var url = "https://api.mfgt.ch/api/v1/reservations";
 
         /*

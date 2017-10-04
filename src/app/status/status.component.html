@@ -124,9 +124,11 @@
                     </td>
                     <td>
                         <div>{{reservation.ReservationStart | date:"HH:mm "}}</div>
+                        <div style="font-size:x-small;" [hidden]="!reservation.Multidayflight">({{reservation.ReservationStart | date:"dd.MM.yyyy"}})</div>
                     </td>
                     <td>
                         <div>{{reservation.ReservationEnd | date:"HH:mm "}}</div>
+                        <div style="font-size:x-small;" [hidden]="!reservation.Multidayflight">({{reservation.ReservationEnd | date:"dd.MM.yyyy"}})</div>
                     </td>
                     <td>
                         <div>{{reservation.Pilot}}</div>
