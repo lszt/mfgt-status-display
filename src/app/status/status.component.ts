@@ -99,17 +99,17 @@ export class StatusComponent implements OnInit {
                 //remove reservation after the end time
                 var now = new Date(Date.now()).getTime();
                 this.reservations = this.reservations.filter(function(e) {
-                    var dateStart = new Date(e.ReservationStart).getTime();
+                    var dateStart = new Date(e.ReservationStart);
                     var dateEnd = new Date(e.ReservationEnd).getTime();
-                    
-                    // mark flight as multi day flight if diff > 24h
+
+                    // mark flight as multi day flight if diff(detect next midnight) > 0ms
                     e["Multidayflight"] = false;
-                    let time = dateEnd - dateStart;  //msec
-                    let hoursDiff = time / (3600 * 1000);
-                    if (hoursDiff >= 24) {
+                    var nextmidnight = new Date(dateStart.getFullYear(), dateStart.getMonth(), dateStart.getDate()+1,0,0,0).getTime();
+                    var diff = dateEnd - nextmidnight;
+                    if (diff > 0) {
                         e.Multidayflight = true;
                     }
-                    
+
                     return dateEnd > now;
                 });
 
