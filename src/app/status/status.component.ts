@@ -14,6 +14,7 @@ export class StatusComponent implements OnInit {
     statusColor: any;
     reservations: any;
     aerodromeweather: any;
+    today: Date;
 
     constructor(public router: Router, mfgtService: MfgtService) {
         this.mfgtService = mfgtService;
@@ -30,6 +31,7 @@ export class StatusComponent implements OnInit {
 
     showStatus(){
         this.showEvents = false;
+        this.today = new Date(Date.now());
 
         this.mfgtService.getStatus()
             .subscribe((data) => {
