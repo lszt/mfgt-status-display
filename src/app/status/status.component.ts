@@ -19,6 +19,8 @@ export class StatusComponent implements OnInit {
     constructor(public router: Router, mfgtService: MfgtService) {
         this.mfgtService = mfgtService;
         this.status = {};
+        this.aerodromeweather = {};
+        this.reservations = {};
     }
 
     ngOnInit() {
@@ -85,7 +87,15 @@ export class StatusComponent implements OnInit {
                 this.aerodromeweather.GustAngle  = this.formatWindDirection(data.GustAngle);
             },
             (error) => {
+                this.aerodromeweather = {};
                 this.aerodromeweather["error"] = "WEATHER data not available";
+                this.aerodromeweather["Temperature"] = "00.0";
+                this.aerodromeweather["Humidity"] = "00";
+                this.aerodromeweather["Pressure"] = "0000.0";
+                this.aerodromeweather["WindAngle"] = "000";
+                this.aerodromeweather["WindStrength"] = "0";
+                this.aerodromeweather["GustAngle"] = "000";
+                this.aerodromeweather["GustStrength"] = "0";
             }
         );
 

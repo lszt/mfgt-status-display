@@ -56,19 +56,19 @@ export class MfgtService {
         }
         */
 
-        return Observable.of({
-            "Temperature":26.5,
-            "Humidity":48,
-            "Pressure":1025.9,
-            "WindAngle":51,
-            "WindStrength":6,
-            "GustAngle":27,
-            "GustStrength":14
-        });
+        // return Observable.of({
+        //     "Temperature":26.5,
+        //     "Humidity":48,
+        //     "Pressure":1025.9,
+        //     "WindAngle":51,
+        //     "WindStrength":6,
+        //     "GustAngle":27,
+        //     "GustStrength":14
+        // });
 
-        // return this.http
-        //     .get(url)
-        //     .map(resp => resp.json());
+        return this.http
+            .get(url)
+            .map(resp => resp.json());
     }
 
     getClubReservations(): Observable<any> {
