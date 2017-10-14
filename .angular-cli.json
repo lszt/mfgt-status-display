@@ -8,6 +8,7 @@
             "root": "src",
             "outDir": "dist",
             "assets": [
+                "_redirects",
                 "assets",
                 "favicon.ico",
                 ".htaccess"
