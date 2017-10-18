@@ -119,8 +119,8 @@
                     </th>
                 </tr>
                 <tr *ngFor="let reservation of reservations">
-                    <td>
-                        <div>{{reservation.Registration}}</div>
+                    <td style="white-space:nowrap;">
+                        <div style="width:20%;">{{reservation.Registration}}</div>
                     </td>
                     <td>
                         <div>{{reservation.ReservationStart | date:"HH:mm "}}</div>
