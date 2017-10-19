@@ -22,82 +22,88 @@
     </div>
 
     <div class="alert temperature" style="background-color:white; color:black;">
-        <table class="temperaturetable">
-            <tr>
-                <td>
-                    <img src="assets/images/thermometer.png">
-                </td>
-                <td>
-                    <img src="assets/images/humidity.png">
-                </td>
-                <td>
-                    <img src="assets/images/pressure.png">
-                </td>
-                <td>
-                    <img src="assets/images/wind.png">
-                </td>
-                <td>
-                    <img src="assets/images/gusts.png">
-                </td>
-            </tr>
-            <tr style="font-size: 1.9vmin;">
-                <td>
-                    <div>Temperatur</div>
-                </td>
-                <td>
-                    <div>Luftfeuchtigkeit</div>
-                </td>
-                <td>
-                    <div>Barometer</div>
-                </td>
-                <td>
-                    <div>Wind</div>
-                </td>
-                <td>
-                    <div>Gusts</div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <div>{{aerodromeweather.Temperature}}</div>
-                </td>
-                <td>
-                    <div>{{aerodromeweather.Humidity}}</div>
-                </td>
-                <td>
-                    <div>{{aerodromeweather.Pressure}}</div>
-                </td>
-                <td>
-                    <div>{{aerodromeweather.WindAngle}}°</div>
-                </td>
-                <td>
-                    <div>{{aerodromeweather.GustAngle}}°</div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <div>°C</div>
-                </td>
-                <td>
-                    <div>%</div>
-                </td>
-                <td>
-                    <div>hPa</div>
-                </td>
-                <td>
-                    <div>{{aerodromeweather.WindStrength}}kt</div>
-                </td>
-                <td>
-                    <div>{{aerodromeweather.GustStrength}}kt</div>
-                </td>
-            </tr>
-        </table>
+        <div>
+            <table class="temperaturetable">
+                <tr>
+                    <td>
+                        <img src="assets/images/thermometer.png">
+                    </td>
+                    <td>
+                        <img src="assets/images/humidity.png">
+                    </td>
+                    <td>
+                        <img src="assets/images/pressure.png">
+                    </td>
+                    <td>
+                        <img src="assets/images/wind.png">
+                    </td>
+                    <td>
+                        <img src="assets/images/gusts.png">
+                    </td>
+                </tr>
+                <tr style="font-size: 1.9vmin;">
+                    <td>
+                        <div>Temperatur</div>
+                    </td>
+                    <td>
+                        <div>Luftfeuchtigkeit</div>
+                    </td>
+                    <td>
+                        <div>Barometer</div>
+                    </td>
+                    <td>
+                        <div>Wind</div>
+                    </td>
+                    <td>
+                        <div>Gusts</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div>{{aerodromeweather.Temperature}}</div>
+                    </td>
+                    <td>
+                        <div>{{aerodromeweather.Humidity}}</div>
+                    </td>
+                    <td>
+                        <div>{{aerodromeweather.Pressure}}</div>
+                    </td>
+                    <td>
+                        <div>{{aerodromeweather.WindAngle}}°</div>
+                    </td>
+                    <td>
+                        <div>{{aerodromeweather.GustAngle}}°</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div>°C</div>
+                    </td>
+                    <td>
+                        <div>%</div>
+                    </td>
+                    <td>
+                        <div>hPa</div>
+                    </td>
+                    <td>
+                        <div>{{aerodromeweather.WindStrength}}kt</div>
+                    </td>
+                    <td>
+                        <div>{{aerodromeweather.GustStrength}}kt</div>
+                    </td>
+                </tr>
+            </table>
+            <h4 class="temperaturetableAktualTime">Letzte aktualisierung {{aerodromeweather.last_update |date:'dd.MM.yyyy HH:mm'}}</h4>
+        </div>
     </div>
 
     <div class="alert reserv" style="background-color:white; color:black;">
         <h2 style="text-align: left;font-weight: bold; font-variant: small-caps;font-size: 3vmin">GEPLANTE FLÜGE&nbsp;&nbsp;<span style="font-size: 2vmin; font-weight: bold;">{{today | date:"dd.MM.yyyy"}}</span></h2>
         <div>
-            <table class=" reservtable ">
+            <div [hidden]="!reservations.showError">
+                <h3 style="color: red;margin-top: 5vmin;">{{reservations.error}}</h3>
+            </div>
+            <table [hidden]="reservations.showError" class=" reservtable ">
                 <tr style="background-color: lightgray; ">
                     <th>
                         <div>Flugzeug</div>

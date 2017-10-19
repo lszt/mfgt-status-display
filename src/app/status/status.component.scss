@@ -70,6 +70,13 @@ $topnav-background-color: #222;
     opacity: 0.5;
 }
 
+.temperaturetableAktualTime {
+    margin-top: 0.5vmin;
+    width: 100%;
+    text-align: right;
+    font-size: 1.4vmin;
+}
+
 .reserv {
     //height: calc(100% - (10% + 20% + 20% + 30px));
     height: 80%;

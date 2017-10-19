@@ -20,7 +20,7 @@ export class StatusComponent implements OnInit {
         this.mfgtService = mfgtService;
         this.status = {};
         this.aerodromeweather = {};
-        this.reservations = {};
+        this.reservations = [];
     }
 
     ngOnInit() {
@@ -131,10 +131,12 @@ export class StatusComponent implements OnInit {
                     return dateEnd > now;
                 });
 
+                this.reservations["showError"] = false;
                 this.reservations["error"] = "";
             },
             (error) => {
-                this.reservations["error"] = "RESERVATIONS not available";
+                this.reservations["showError"] = true;
+                this.reservations["error"] = "RESERVATIONS not available!";
             }
         );
     }
