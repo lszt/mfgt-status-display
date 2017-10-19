@@ -72,7 +72,7 @@ export class MfgtService {
     }
 
     getClubReservations(): Observable<any> {
-        //var url = "https://api.mfgt.ch/api/v1/reservations/20171007";  // specific day
+        //var url = "https://api.mfgt.ch/api/v1/reservations/20171029";  // specific day
         var url = "https://api.mfgt.ch/api/v1/reservations";
 
         /*
@@ -93,7 +93,7 @@ export class MfgtService {
                 "InstructorEnd": "",
                 "TypeOfFlight": "Rundflug",
                 "IsMaintenance": "False",
-                "ReservationStatus": "OK",
+                "ReservationStatus": "OK", // oder "WAITING" -> Warteliste
                 "Origin": "LSZT",
                 "Destination": "LSZT",
                 "LastChangeDateTime": "2017-02-06T17:47:00+01:00",
@@ -105,7 +105,7 @@ export class MfgtService {
 
         return this.http
                 .get(url)
-                .map(resp => resp.json());    
+                .map(resp => resp.json());
     }
 
 }

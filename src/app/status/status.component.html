@@ -132,6 +132,7 @@
                     </td>
                     <td>
                         <div>{{reservation.Pilot}}</div>
+                        <div style="font-size:small;font-weight: bold;" [hidden]="!reservation.Waiting">(Warteliste)</div>
                     </td>
                     <td>
                         <div>{{reservation.Destination}}</div>

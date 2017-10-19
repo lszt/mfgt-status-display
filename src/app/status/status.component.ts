@@ -122,6 +122,12 @@ export class StatusComponent implements OnInit {
                         e.Multidayflight = true;
                     }
 
+                    // mark flight as Waiting flight (Warteliste)
+                    e["Waiting"] = false;
+                    if (e.ReservationStatus === "WAITING") {
+                        e.Waiting = true;
+                    }
+
                     return dateEnd > now;
                 });
 
