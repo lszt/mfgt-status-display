@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Http, URLSearchParams} from '@angular/http';
+import {Http, Headers, URLSearchParams} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
@@ -8,6 +8,16 @@ import 'rxjs/add/operator/map';
 export class MfgtService {
 
     constructor(private http: Http) {
+    }
+
+    getConfig(): Observable<any> {
+        var url = "assets/settings.json";
+
+        let myHeaders = new Headers({ 'Content-Type': 'application/json', 'Cache-Control': 'no-cache' }); 
+
+        return this.http
+                    .get(url, {headers: myHeaders})
+                    .map(resp => resp.json());
     }
 
     getStatus(): Observable<any> {
@@ -69,6 +79,52 @@ export class MfgtService {
         return this.http
             .get(url)
             .map(resp => resp.json());
+    }
+
+    getActualFlights(): Observable<any> {
+        //var url = "https://api.mfgt.ch/api/v1/flights/20171029";  // specific day
+        var url = "https://api.mfgt.ch/api/v1/flights";
+
+        /*
+        [
+            {
+                "ReservationCode": "IHBJEZ",
+                "Registration": "HB-PGM",
+                "AircraftType": "Piper Archer II",
+                "ReservationStart": "2017-10-01T11:00:00+02:00",
+                "ReservationEnd": "2017-10-01T19:00:00+02:00",
+                "Pilot": "MFGT Sekretariat",
+                "PilotUsername": "sekretariat",
+                "PilotStart": "2017-10-01T11:00:00+02:00",
+                "PilotEnd": "2017-10-01T19:00:00+02:00",
+                "Instructor": "",
+                "InstructorUsername": "",
+                "InstructorStart": "",
+                "InstructorEnd": "",
+                "TypeOfFlight": "Rundflug",
+                "IsMaintenance": "False",
+                "ReservationStatus": "OK", // oder "WAITING" -> Warteliste
+                "Origin": "LSZT",
+                "Destination": "LSZT",
+                "LastChangeDateTime": "2017-02-06T17:47:00+01:00",
+                "LastChangeUsername": "21277"
+            },
+            {}
+        ]
+        */
+
+        return Observable.of([{
+            "Registration": "HB-PGM",
+            "TakeOff":"2017-10-25T11:00:00+02:00",
+            "Landing":"2017-10-26T19:00:00+02:00",
+            "Pilot":"MFGT Sekretariat",
+            "Destination":"LSZR",
+            "TypeOfFlight":"Rundflug"
+        }]);
+
+        // return this.http
+        //         .get(url)
+        //         .map(resp => resp.json());
     }
 
     getClubReservations(): Observable<any> {
