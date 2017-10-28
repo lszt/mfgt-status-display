@@ -110,6 +110,9 @@ export class StatusComponent implements OnInit {
 
                 this.aerodromeweather.WindAngle  = this.formatWindDirection(data.WindAngle);
                 this.aerodromeweather.GustAngle  = this.formatWindDirection(data.GustAngle);
+
+                this.aerodromeweather.WindStrength = Math.round(this.aerodromeweather.WindStrength / 1.84);
+                this.aerodromeweather.GustStrength = Math.round(this.aerodromeweather.GustStrength / 1.84);
             },
             (error) => {
                 this.aerodromeweather = {};
