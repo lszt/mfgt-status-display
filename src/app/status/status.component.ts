@@ -72,8 +72,8 @@ export class StatusComponent implements OnInit {
 
                 var messageLines = this.status.message.split("\r\n");
                 this.status.message = "";
-                for(var i=1; i<messageLines.length; i++){
-                    if (i>1 && messageLines[i] !== ""){
+                for(var i=0; i<messageLines.length; i++){
+                    if (messageLines[i] !== ""){
                         this.status.message += "\r\n";
                     }
                     this.status.message += messageLines[i];
