@@ -81,45 +81,34 @@ export class MfgtService {
             .map(resp => resp.json());
     }
 
+    getEvents(): Observable<any> {
+        var url = "https://api.mfgt.ch/api/v1/events";
+
+        return Observable.of([]);
+    }
+
     getActualFlights(): Observable<any> {
-        //var url = "https://api.mfgt.ch/api/v1/flights/20171029";  // specific day
         var url = "https://api.mfgt.ch/api/v1/flights";
 
-        /*
-        [
-            {
-                "ReservationCode": "IHBJEZ",
-                "Registration": "HB-PGM",
-                "AircraftType": "Piper Archer II",
-                "ReservationStart": "2017-10-01T11:00:00+02:00",
-                "ReservationEnd": "2017-10-01T19:00:00+02:00",
-                "Pilot": "MFGT Sekretariat",
-                "PilotUsername": "sekretariat",
-                "PilotStart": "2017-10-01T11:00:00+02:00",
-                "PilotEnd": "2017-10-01T19:00:00+02:00",
-                "Instructor": "",
-                "InstructorUsername": "",
-                "InstructorStart": "",
-                "InstructorEnd": "",
-                "TypeOfFlight": "Rundflug",
-                "IsMaintenance": "False",
-                "ReservationStatus": "OK", // oder "WAITING" -> Warteliste
-                "Origin": "LSZT",
-                "Destination": "LSZT",
-                "LastChangeDateTime": "2017-02-06T17:47:00+01:00",
-                "LastChangeUsername": "21277"
-            },
-            {}
-        ]
-        */
-
         return Observable.of([{
+            "FlightDirection": "inbound", // Symbol
+            "Registration": "HB-PGM",     // Flugzeug
+            "AircraftType": "PA28",       // Flugzeug
+            "DateOfFlight":"2017-10-26T17:00:00+02:00", // Zeit
+            "Location":"LSZR",            // Von/Nach
+
+            "Pilot":"MFGT Sekretariat",   // Pilot
+        },{
+            "FlightDirection": "outbound",
             "Registration": "HB-PGM",
+            "AircraftType": "PA28",
             "TakeOff":"2017-10-25T11:00:00+02:00",
-            "Landing":"2017-10-26T19:00:00+02:00",
-            "Pilot":"MFGT Sekretariat",
             "Destination":"LSZR",
-            "TypeOfFlight":"Rundflug"
+
+            "DateOfFlight":"2017-10-26T19:00:00+02:00",
+            "Location":"LSZR",
+
+            "Pilot":"MFGT Sekretariat",
         }]);
 
         // return this.http
