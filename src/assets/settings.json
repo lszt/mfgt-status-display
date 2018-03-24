@@ -1,5 +1,5 @@
 {
     "showEvents": false,
     "showFlights": false,
-    "showReservations": true
+    "showReservations": false
 }
