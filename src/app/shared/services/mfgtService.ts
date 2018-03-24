@@ -11,9 +11,9 @@ export class MfgtService {
     }
 
     getConfig(): Observable<any> {
-        var url = "assets/settings.json";
+        const url = 'assets/settings.json';
 
-        let myHeaders = new Headers({ 'Content-Type': 'application/json', 'Cache-Control': 'no-cache' }); 
+        const myHeaders = new Headers({ 'Content-Type': 'application/json', 'Cache-Control': 'no-cache' }); 
 
         return this.http
                     .get(url, {headers: myHeaders})
@@ -21,7 +21,7 @@ export class MfgtService {
     }
 
     getStatus(): Observable<any> {
-        var url = "https://api.mfgt.ch/api/v1/aerodromestatus";
+        const url = 'https://api.mfgt.ch/api/v1/aerodromestatus';
 
         /*
         {
@@ -52,7 +52,7 @@ export class MfgtService {
     }
 
     getAerodromeWeather(): Observable<any> {
-        var url = "https://api.mfgt.ch/api/v1/aerodromeweather";
+        const url = 'https://api.mfgt.ch/api/v1/aerodromeweather';
 
         /*
         {
@@ -82,43 +82,47 @@ export class MfgtService {
     }
 
     getEvents(): Observable<any> {
-        var url = "https://api.mfgt.ch/api/v1/events";
+        const url = 'https://api.mfgt.ch/api/v1/events';
 
-        return Observable.of([]);
+        // return Observable.of([]);
+
+        return  this.http
+            .get(url)
+            .map(resp => resp.json());
     }
 
     getActualFlights(): Observable<any> {
-        var url = "https://api.mfgt.ch/api/v1/flights";
+        const url = 'https://api.mfgt.ch/api/v1/flights';
 
-        return Observable.of([{
-            "FlightDirection": "inbound", // Symbol
-            "Registration": "HB-PGM",     // Flugzeug
-            "AircraftType": "PA28",       // Flugzeug
-            "DateOfFlight":"2017-10-26T17:00:00+02:00", // Zeit
-            "Location":"LSZR",            // Von/Nach
+        // return Observable.of([{
+        //     "FlightDirection": "inbound", // Symbol
+        //     "Registration": "HB-PGM",     // Flugzeug
+        //     "AircraftType": "PA28",       // Flugzeug
+        //     "DateOfFlight":"2017-10-26T17:00:00+02:00", // Zeit
+        //     "Location":"LSZR",            // Von/Nach
 
-            "Pilot":"MFGT Sekretariat",   // Pilot
-        },{
-            "FlightDirection": "outbound",
-            "Registration": "HB-PGM",
-            "AircraftType": "PA28",
-            "TakeOff":"2017-10-25T11:00:00+02:00",
-            "Destination":"LSZR",
+        //     "Pilot":"MFGT Sekretariat",   // Pilot
+        // },{
+        //     "FlightDirection": "outbound",
+        //     "Registration": "HB-PGM",
+        //     "AircraftType": "PA28",
+        //     "TakeOff":"2017-10-25T11:00:00+02:00",
+        //     "Destination":"LSZR",
 
-            "DateOfFlight":"2017-10-26T19:00:00+02:00",
-            "Location":"LSZR",
+        //     "DateOfFlight":"2017-10-26T19:00:00+02:00",
+        //     "Location":"LSZR",
 
-            "Pilot":"MFGT Sekretariat",
-        }]);
+        //     "Pilot":"MFGT Sekretariat",
+        // }]);
 
-        // return this.http
-        //         .get(url)
-        //         .map(resp => resp.json());
+        return this.http
+                .get(url)
+                .map(resp => resp.json());
     }
 
     getClubReservations(): Observable<any> {
-        //var url = "https://api.mfgt.ch/api/v1/reservations/20171029";  // specific day
-        var url = "https://api.mfgt.ch/api/v1/reservations";
+        // const url = "https://api.mfgt.ch/api/v1/reservations/20171029";  // specific day
+        const url = 'https://api.mfgt.ch/api/v1/reservations';
 
         /*
         [
