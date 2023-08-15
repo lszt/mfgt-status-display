@@ -199,20 +199,20 @@
                     </th>
                 </tr>
                 <tr *ngFor="let reservation of reservations">
-                    <td style="white-space:nowrap;">
-                        <div style="width:20%;">{{reservation.Registration}}</div>
+                    <td style="white-space: nowrap;">
+                        <div style="width: 20%;">{{reservation.Registration}}</div>
                     </td>
                     <td>
                         <div>{{reservation.ReservationStart | date:"HH:mm "}}</div>
-                        <div style="font-size:medium;font-weight: bold;" [hidden]="!reservation.MultiDayFlight">({{reservation.ReservationStart | date:"dd.MM.yyyy"}})</div>
+                        <div style="font-size: 1.5vmin; font-weight: bold;" [hidden]="!reservation.MultiDayFlight">({{reservation.ReservationStart | date:"dd.MM.yyyy"}})</div>
                     </td>
                     <td>
                         <div>{{reservation.ReservationEnd | date:"HH:mm "}}</div>
-                        <div style="font-size:medium;font-weight: bold;" [hidden]="!reservation.MultiDayFlight">({{reservation.ReservationEnd | date:"dd.MM.yyyy"}})</div>
+                        <div style="font-size: 1.5vmin; font-weight: bold;" [hidden]="!reservation.MultiDayFlight">({{reservation.ReservationEnd | date:"dd.MM.yyyy"}})</div>
                     </td>
                     <td>
                         <div>{{reservation.Pilot}}</div>
-                        <div style="font-size:medium;font-weight: bold;" [hidden]="!reservation.Waiting">(Warteliste)</div>
+                        <div style="font-size: 1.5vmin; font-weight: bold;" [hidden]="!reservation.Waiting">(Warteliste)</div>
                     </td>
                     <td>
                         <div>{{reservation.Destination}}</div>
