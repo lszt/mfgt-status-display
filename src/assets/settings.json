@@ -2,6 +2,7 @@
     "showEvents": false,
     "showFlights": false,
     "showReservations": true,
+    "showWeather": false,
     "requestAerodromeStatusDataEnabled": true,
     "requestWeatherDataEnabled": false,
     "requestEventsDataEnabled": true,

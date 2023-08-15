@@ -49,6 +49,9 @@ export class StatusComponent implements OnInit {
             this.mfgtService.getConfig().subscribe({
                 next: (data) => {
                     this.settings = data;
+                    if (!('showWeather' in this.settings)) {
+                        this.settings['showWeather'] = false;
+                    }
                     if (!('requestAerodromeStatusDataEnabled' in this.settings)) {
                         this.settings['requestAerodromeStatusDataEnabled'] = true;
                     }
@@ -239,9 +242,13 @@ export class StatusComponent implements OnInit {
                     });
 
                     // remove reservation after the end time
-                    const now = new Date(Date.now()).getTime();
+                    const now = new Date().getTime();
+                    // const tmpnow = new Date();
+                    // const now = new Date(tmpnow.getFullYear(), tmpnow.getMonth(), tmpnow.getDate(), 12, 0, 0).getTime();
+
                     this.reservations = this.reservations.filter(function(e) {
                         const dateStart = new Date(e.ReservationStart);
+                        const dateEndDate = new Date(e.ReservationEnd);
                         const dateEnd = new Date(e.ReservationEnd).getTime();
 
                         // mark flight as multi day flight if diff(detect next midnight) > 0ms
