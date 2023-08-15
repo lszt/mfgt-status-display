@@ -1,23 +1,32 @@
-import {Injectable} from '@angular/core';
-import {Http, Headers, URLSearchParams} from '@angular/http';
-import {Observable} from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { from, Observable, of } from 'rxjs';
+import { catchError, map, mergeMap, tap } from 'rxjs/operators';
 
 
 @Injectable()
 export class MfgtService {
+    // headers = new HttpHeaders(
+    //     {
+    //         'Authorization': 'Bearer my-token',
+    //         'My-Custom-Header': 'foobar',
+    //         'timeout': 30000
+    //     }
+    // );
 
-    constructor(private http: Http) {
+    constructor(private http: HttpClient) {
     }
 
     getConfig(): Observable<any> {
         const url = 'assets/settings.json';
 
-        const myHeaders = new Headers({ 'Content-Type': 'application/json', 'Cache-Control': 'no-cache' }); 
+        const myHeaders = new HttpHeaders(
+            {
+                'Content-Type': 'application/json',
+                'Cache-Control': 'no-cache'
+            });
 
-        return this.http
-                    .get(url, {headers: myHeaders})
-                    .map(resp => resp.json());
+        return this.http.get(url, { headers: myHeaders });
     }
 
     getStatus(): Observable<any> {
@@ -45,10 +54,7 @@ export class MfgtService {
         }
         */
 
-        return this.http
-                .get(url)
-                .map(resp => resp.json());
-
+        return this.http.get(url);
     }
 
     getAerodromeWeather(): Observable<any> {
@@ -76,9 +82,7 @@ export class MfgtService {
         //     "GustStrength":14
         // });
 
-        return this.http
-            .get(url)
-            .map(resp => resp.json());
+        return this.http.get(url);
     }
 
     getEvents(): Observable<any> {
@@ -86,9 +90,7 @@ export class MfgtService {
 
         // return Observable.of([]);
 
-        return  this.http
-            .get(url)
-            .map(resp => resp.json());
+        return this.http.get(url);
     }
 
     getActualFlights(): Observable<any> {
@@ -115,9 +117,7 @@ export class MfgtService {
         //     "Pilot":"MFGT Sekretariat",
         // }]);
 
-        return this.http
-                .get(url)
-                .map(resp => resp.json());
+        return this.http.get(url);
     }
 
     getClubReservations(): Observable<any> {
@@ -152,9 +152,7 @@ export class MfgtService {
         ]
         */
 
-        return this.http
-                .get(url)
-                .map(resp => resp.json());
+        return this.http.get(url);
     }
 
 }

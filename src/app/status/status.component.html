@@ -53,19 +53,19 @@
                 </tr>
                 <tr>
                     <td>
-                        <div>{{aerodromeweather.Temperature}}</div>
+                        <div>{{aerodromeWeather.Temperature}}</div>
                     </td>
                     <td>
-                        <div>{{aerodromeweather.Humidity}}</div>
+                        <div>{{aerodromeWeather.Humidity}}</div>
                     </td>
                     <td>
-                        <div>{{aerodromeweather.Pressure}}</div>
+                        <div>{{aerodromeWeather.Pressure}}</div>
                     </td>
                     <td>
-                        <div>{{aerodromeweather.WindAngle}}°</div>
+                        <div>{{aerodromeWeather.WindAngle}}°</div>
                     </td>
                     <td>
-                        <div>{{aerodromeweather.GustAngle}}°</div>
+                        <div>{{aerodromeWeather.GustAngle}}°</div>
                     </td>
                 </tr>
                 <tr>
@@ -79,14 +79,14 @@
                         <div>hPa</div>
                     </td>
                     <td>
-                        <div>{{aerodromeweather.WindStrength}}kt</div>
+                        <div>{{aerodromeWeather.WindStrength}}kt</div>
                     </td>
                     <td>
-                        <div>{{aerodromeweather.GustStrength}}kt</div>
+                        <div>{{aerodromeWeather.GustStrength}}kt</div>
                     </td>
                 </tr>
             </table>
-            <div class="temperaturetableAktualTime">Letzte aktualisierung {{aerodromeweather.last_update |date:'dd.MM.yyyy HH:mm'}}</div>
+            <div class="temperaturetableAktualTime">Letzte aktualisierung {{aerodromeWeather.last_update |date:'dd.MM.yyyy HH:mm'}}</div>
         </div>
     </div>
 
@@ -111,11 +111,11 @@
                 <tr *ngFor="let event of events">
                     <td valign="top" style="width:15% !important;">
                         <div>{{event.From | date:"HH:mm "}}</div>
-                        <div style="font-size:small;font-weight: bold;" [hidden]="!event.Multidayevent">({{event.From | date:"dd.MM.yyyy"}})</div>
+                        <div style="font-size:small;font-weight: bold;" [hidden]="!event.MultiDayEvent">({{event.From | date:"dd.MM.yyyy"}})</div>
                     </td>
                     <td valign="top" style="width:15% !important;">
                         <div>{{event.Until | date:"HH:mm "}}</div>
-                        <div style="font-size:small;font-weight: bold;" [hidden]="!event.Multidayevent">({{event.Until | date:"dd.MM.yyyy"}})</div>
+                        <div style="font-size:small;font-weight: bold;" [hidden]="!event.MultiDayEvent">({{event.Until | date:"dd.MM.yyyy"}})</div>
                     </td>
                     <td>
                         <div style="white-space: pre-wrap;">{{event.Description}}</div>
@@ -204,11 +204,11 @@
                     </td>
                     <td>
                         <div>{{reservation.ReservationStart | date:"HH:mm "}}</div>
-                        <div style="font-size:small;font-weight: bold;" [hidden]="!reservation.Multidayflight">({{reservation.ReservationStart | date:"dd.MM.yyyy"}})</div>
+                        <div style="font-size:small;font-weight: bold;" [hidden]="!reservation.MultiDayFlight">({{reservation.ReservationStart | date:"dd.MM.yyyy"}})</div>
                     </td>
                     <td>
                         <div>{{reservation.ReservationEnd | date:"HH:mm "}}</div>
-                        <div style="font-size:small;font-weight: bold;" [hidden]="!reservation.Multidayflight">({{reservation.ReservationEnd | date:"dd.MM.yyyy"}})</div>
+                        <div style="font-size:small;font-weight: bold;" [hidden]="!reservation.MultiDayFlight">({{reservation.ReservationEnd | date:"dd.MM.yyyy"}})</div>
                     </td>
                     <td>
                         <div>{{reservation.Pilot}}</div>

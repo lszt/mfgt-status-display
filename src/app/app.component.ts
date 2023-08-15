@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -7,7 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
     constructor(private translate: TranslateService, public router: Router) {
         translate.addLangs(['en', 'fr', 'ur']);
@@ -17,7 +17,7 @@ export class AppComponent {
         translate.use(browserLang.match(/en|fr|ur/) ? browserLang : 'en');
     }
 
-    ngOnInit() {
+    ngOnInit(): void {
         if (this.router.url === '/') {
            this.router.navigate(['/status']);
         }

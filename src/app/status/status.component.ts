@@ -15,14 +15,14 @@ export class StatusComponent implements OnInit {
     events: any;
     flights: any;
     reservations: any;
-    aerodromeweather: any;
+    aerodromeWeather: any;
     today: Date;
 
     constructor(public router: Router, mfgtService: MfgtService) {
         this.mfgtService = mfgtService;
         this.settings = { showEvents: false, showFlights: false, showReservations: false };
         this.status = {};
-        this.aerodromeweather = {};
+        this.aerodromeWeather = {};
         this.flights = [];
         this.reservations = [];
         this.events = [];
@@ -38,7 +38,7 @@ export class StatusComponent implements OnInit {
 
         // setInterval(() => {
         //     this.updateStatus();
-        // }, 60000);
+        // }, 10000);
     }
 
     // update status and settings periodically
@@ -46,13 +46,30 @@ export class StatusComponent implements OnInit {
         try {
             this.log('StatusComponent.updateStatus');
 
-            this.mfgtService.getConfig()
-                .subscribe((data) => {
+            this.mfgtService.getConfig().subscribe({
+                next: (data) => {
                     this.settings = data;
+                    if (!('requestAerodromeStatusDataEnabled' in this.settings)) {
+                        this.settings['requestAerodromeStatusDataEnabled'] = true;
+                    }
+                    if (!('requestWeatherDataEnabled' in this.settings)) {
+                        this.settings['requestWeatherDataEnabled'] = false;
+                    }
+                    if (!('requestEventsDataEnabled' in this.settings)) {
+                        this.settings['requestEventsDataEnabled'] = true;
+                    }
+                    if (!('requestFlightDataEnabled' in this.settings)) {
+                        this.settings['requestFlightDataEnabled'] = true;
+                    }
+                    if (!('requestReservationsDataEnabled' in this.settings)) {
+                        this.settings['requestReservationsDataEnabled'] = true;
+                    }
                     this.log(data);
                     this.showStatus();
                 },
-                (error) => this.log(error));
+                error: (error) => this.log(error),
+                complete: () => { }
+            });
         } catch (error) {
             this.log('Error: ' + error);
         }
@@ -62,78 +79,84 @@ export class StatusComponent implements OnInit {
     showStatus() {
         this.today = new Date(Date.now());
 
-        this.mfgtService.getStatus()
-            .subscribe((data) => {
-                this.status = data;
+        if (this.settings.requestAerodromeStatusDataEnabled) {
+            this.mfgtService.getStatus().subscribe({
+                next: (data) => {
+                    this.status = data;
 
-                // TEST status -> override for tests
-                // this.status.status = "restricted";
-                // this.status.message = "Flugplatz offen\r\n\r\n";
-                // this.status.message = "TEST das ist eine Zeile \r\nZweite Zeile definiert\r\n";
-                // this.status.message = "TEST das ist eine Zeile \r\nZweite Zeile definiert\r\nUnd eine dritte Zeile";
+                    // TEST status -> override for tests
+                    // this.status.status = "restricted";
+                    // this.status.message = "Flugplatz offen\r\n\r\n";
+                    // this.status.message = "TEST das ist eine Zeile \r\nZweite Zeile definiert\r\n";
+                    // this.status.message = "TEST das ist eine Zeile \r\nZweite Zeile definiert\r\nUnd eine dritte Zeile";
 
-                const messageLines = this.status.message.split('\r\n');
-                this.status.message = '';
-                for(let i = 0; i < messageLines.length; i++) {
-                    if (messageLines[i] !== '') {
-                        this.status.message += '\r\n';
+                    const messageLines = this.status.message.split('\r\n');
+                    this.status.message = '';
+                    for (let i = 0; i < messageLines.length; i++) {
+                        if (messageLines[i] !== '') {
+                            this.status.message += '\r\n';
+                        }
+                        this.status.message += messageLines[i];
                     }
-                    this.status.message += messageLines[i];
-                }
 
-                if (this.status.status === 'open') {
-                    this.status['statusColor'] = 'alert-success';
-                    this.status['statusText'] = 'Flugplatz offen';
-                }
-                // tslint:disable-next-line:one-line
-                else if (this.status.status === 'restricted') {
-                    this.status['statusColor'] = 'alert-warning';
-                    this.status['statusText'] = 'Flugplatz eingeschränkt';
-                }
-                // tslint:disable-next-line:one-line
-                else { // closed
-                    this.status['statusColor'] = 'alert-danger';
-                    this.status['statusText'] = 'Flugplatz geschlossen';
-                }
-            },
-            (error) => {
-                this.status = {
-                                'message': '',
-                                'statusColor': 'alert-danger',
-                                'statusText': 'STATUS not available',
-                                'last_update_date': Date.now(),
-                                'last_update_by': 'SYSTEM'
-                            };
-            }
-        );
+                    if (this.status.status === 'open') {
+                        this.status['statusColor'] = 'alert-success';
+                        this.status['statusText'] = 'Flugplatz offen';
+                    }
+                    // tslint:disable-next-line:one-line
+                    else if (this.status.status === 'restricted') {
+                        this.status['statusColor'] = 'alert-warning';
+                        this.status['statusText'] = 'Flugplatz eingeschränkt';
+                    }
+                    // tslint:disable-next-line:one-line
+                    else { // closed
+                        this.status['statusColor'] = 'alert-danger';
+                        this.status['statusText'] = 'Flugplatz geschlossen';
+                    }
+                },
+                error: (error) => {
+                    this.status = {
+                                    'message': '',
+                                    'statusColor': 'alert-danger',
+                                    'statusText': 'STATUS not available',
+                                    'last_update_date': Date.now(),
+                                    'last_update_by': 'SYSTEM'
+                                };
+                },
+                complete: () => { }
+            });
+        }
 
-        this.mfgtService.getAerodromeWeather()
-            .subscribe((data) => {
-                this.aerodromeweather = data;
-                this.aerodromeweather['error'] = '';
+        if (this.settings.requestWeatherDataEnabled) {
+            this.mfgtService.getAerodromeWeather().subscribe({
+                next: (data) => {
+                    this.aerodromeWeather = data;
+                    this.aerodromeWeather['error'] = '';
 
-                this.aerodromeweather.WindAngle  = this.formatWindDirection(data.WindAngle);
-                this.aerodromeweather.GustAngle  = this.formatWindDirection(data.GustAngle);
+                    this.aerodromeWeather.WindAngle  = this.formatWindDirection(data.WindAngle);
+                    this.aerodromeWeather.GustAngle  = this.formatWindDirection(data.GustAngle);
 
-                this.aerodromeweather.WindStrength = Math.round(this.aerodromeweather.WindStrength / 1.84);
-                this.aerodromeweather.GustStrength = Math.round(this.aerodromeweather.GustStrength / 1.84);
-            },
-            (error) => {
-                this.aerodromeweather = {};
-                this.aerodromeweather['error'] = 'WEATHER data not available';
-                this.aerodromeweather['Temperature'] = '00.0';
-                this.aerodromeweather['Humidity'] = '00';
-                this.aerodromeweather['Pressure'] = '0000.0';
-                this.aerodromeweather['WindAngle'] = '000';
-                this.aerodromeweather['WindStrength'] = '0';
-                this.aerodromeweather['GustAngle'] = '000';
-                this.aerodromeweather['GustStrength'] = '0';
-            }
-        );
+                    this.aerodromeWeather.WindStrength = Math.round(this.aerodromeWeather.WindStrength / 1.84);
+                    this.aerodromeWeather.GustStrength = Math.round(this.aerodromeWeather.GustStrength / 1.84);
+                },
+                error: (error) => {
+                    this.aerodromeWeather = {};
+                    this.aerodromeWeather['error'] = 'WEATHER data not available';
+                    this.aerodromeWeather['Temperature'] = '00.0';
+                    this.aerodromeWeather['Humidity'] = '00';
+                    this.aerodromeWeather['Pressure'] = '0000.0';
+                    this.aerodromeWeather['WindAngle'] = '000';
+                    this.aerodromeWeather['WindStrength'] = '0';
+                    this.aerodromeWeather['GustAngle'] = '000';
+                    this.aerodromeWeather['GustStrength'] = '0';
+                },
+                complete: () => { }
+            });
+        }
 
-        if (this.settings.showEvents === true) {
-            this.mfgtService.getEvents()
-                .subscribe((data) => {
+        if (this.settings.showEvents && this.settings.requestEventsDataEnabled) {
+            this.mfgtService.getEvents().subscribe({
+                next: (data) => {
                     // sort events by from time
                     this.events = data.sort(function(a, b) {
                         const c = new Date(a.From);
@@ -148,11 +171,13 @@ export class StatusComponent implements OnInit {
                         const until = new Date(e.Until).getTime();
 
                         // mark event as multi day event if diff(detect next midnight) > 0ms
-                        e['Multidayevent'] = false;
-                        const nextmidnight = new Date(from.getFullYear(), from.getMonth(), from.getDate() + 1, 0, 0, 0).getTime();
-                        const diff = until - nextmidnight;
+                        e['MultiDayEvent'] = false;
+                        const nextMidnight = new Date(from.getFullYear(),
+                                                      from.getMonth(),
+                                                      from.getDate() + 1, 0, 0, 0).getTime();
+                        const diff = until - nextMidnight;
                         if (diff > 0) {
-                            e.Multidayevent = true;
+                            e.MultiDayEvent = true;
                         }
 
                         return until > now;
@@ -161,16 +186,17 @@ export class StatusComponent implements OnInit {
                     this.events['showError'] = false;
                     this.events['error'] = '';
                 },
-                (error) => {
+                error: (error) => {
                     this.events['showError'] = true;
                     this.events['error'] = 'FLIGHTS not available!';
-                }
-            );
+                },
+                complete: () => { }
+            });
         }
 
-        if (this.settings.showFlights === true) {
-            this.mfgtService.getActualFlights()
-                .subscribe((data) => {
+        if (this.settings.showFlights && this.settings.requestFlightsDataEnabled) {
+            this.mfgtService.getActualFlights().subscribe({
+                next: (data) => {
                     // sort flights by start time
                     this.flights = data.sort(function(a, b) {
                         const c = new Date(a.DateOfFlight);
@@ -180,9 +206,9 @@ export class StatusComponent implements OnInit {
 
                     this.flights.forEach(flight => {
                         // is the flight time today ?
-                        const dateofFlight = new Date(flight.DateOfFlight);
+                        const dateOfFlight = new Date(flight.DateOfFlight);
                         flight['IsTodayFlight'] = false;
-                        if (this.today.getDate() === dateofFlight.getDate()) {
+                        if (this.today.getDate() === dateOfFlight.getDate()) {
                             flight.IsTodayFlight = true;
                         }
 
@@ -194,21 +220,22 @@ export class StatusComponent implements OnInit {
                     this.flights['showError'] = false;
                     this.flights['error'] = '';
                 },
-                (error) => {
+                error: (error) => {
                     this.flights['showError'] = true;
                     this.flights['error'] = 'FLIGHTS not available!';
-                }
-            );
+                },
+                complete: () => { }
+            });
         }
 
-        if (this.settings.showReservations === true) {
-            this.mfgtService.getClubReservations()
-                .subscribe((data) => {
+        if (this.settings.showReservations && this.settings.requestReservationsDataEnabled) {
+            this.mfgtService.getClubReservations().subscribe({
+                next: (data) => {
                     // sort reservations by start time
-                    this.reservations = data.sort(function(a,b) {
+                    this.reservations = data.sort(function(a, b) {
                         const c = new Date(a.ReservationStart);
                         const d = new Date(b.ReservationStart);
-                        return c.getTime()-d.getTime();
+                        return c.getTime() - d.getTime();
                     });
 
                     // remove reservation after the end time
@@ -218,11 +245,13 @@ export class StatusComponent implements OnInit {
                         const dateEnd = new Date(e.ReservationEnd).getTime();
 
                         // mark flight as multi day flight if diff(detect next midnight) > 0ms
-                        e['Multidayflight'] = false;
-                        const nextmidnight = new Date(dateStart.getFullYear(), dateStart.getMonth(), dateStart.getDate()+1,0,0,0).getTime();
-                        const diff = dateEnd - nextmidnight;
+                        e['MultiDayFlight'] = false;
+                        const nextMidnight = new Date(dateStart.getFullYear(),
+                                                      dateStart.getMonth(),
+                                                      dateStart.getDate() + 1, 0, 0, 0).getTime();
+                        const diff = dateEnd - nextMidnight;
                         if (diff > 0) {
-                            e.Multidayflight = true;
+                            e.MultiDayFlight = true;
                         }
 
                         // mark flight as Waiting flight (Warteliste)
@@ -237,11 +266,12 @@ export class StatusComponent implements OnInit {
                     this.reservations['showError'] = false;
                     this.reservations['error'] = '';
                 },
-                (error) => {
+                error: (error) => {
                     this.reservations['showError'] = true;
                     this.reservations['error'] = 'RESERVATIONS not available!';
-                }
-            );
+                },
+                complete: () => { }
+            });
         }
     }
 
