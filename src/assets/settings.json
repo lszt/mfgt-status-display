@@ -1,5 +1,11 @@
 {
     "showEvents": false,
     "showFlights": false,
-    "showReservations": false
+    "showReservations": false,
+    "showWeather": false,
+    "requestAerodromeStatusDataEnabled": true,
+    "requestWeatherDataEnabled": false,
+    "requestEventsDataEnabled": true,
+    "requestFlightDataEnabled": true,
+    "requestReservationsDataEnabled": false
 }

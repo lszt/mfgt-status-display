@@ -14,14 +14,7 @@
         <p style="white-space: pre-wrap; margin: 0;font-size:5vmin;font-weight:bolder;background-color:white;color:black; border-radius: 5px;">{{status.message}}</p>
     </div>
 
-    <div *ngIf="settings.showEvents" class="alert" style="background-color:white; color:black;font-variant: small-caps;">
-        <h2 style="text-align: left;font-weight: bold; font-variant: small-caps;font-size: 3vmin">AKTUELLE EVENTS</h2>
-        <div style="text-align: left;font-variant: small-caps;">
-            Test Test Test
-        </div>
-    </div>
-
-    <div class="alert temperature" style="background-color:white; color:black;">
+    <div *ngIf="settings.showWeather" class="alert temperature" style="background-color:white; color:black;">
         <div>
             <table class="temperaturetable">
                 <tr>
@@ -60,19 +53,19 @@
                 </tr>
                 <tr>
                     <td>
-                        <div>{{aerodromeweather.Temperature}}</div>
+                        <div>{{aerodromeWeather.Temperature}}</div>
                     </td>
                     <td>
-                        <div>{{aerodromeweather.Humidity}}</div>
+                        <div>{{aerodromeWeather.Humidity}}</div>
                     </td>
                     <td>
-                        <div>{{aerodromeweather.Pressure}}</div>
+                        <div>{{aerodromeWeather.Pressure}}</div>
                     </td>
                     <td>
-                        <div>{{aerodromeweather.WindAngle}}°</div>
+                        <div>{{aerodromeWeather.WindAngle}}°</div>
                     </td>
                     <td>
-                        <div>{{aerodromeweather.GustAngle}}°</div>
+                        <div>{{aerodromeWeather.GustAngle}}°</div>
                     </td>
                 </tr>
                 <tr>
@@ -86,14 +79,49 @@
                         <div>hPa</div>
                     </td>
                     <td>
-                        <div>{{aerodromeweather.WindStrength}}kt</div>
+                        <div>{{aerodromeWeather.WindStrength}}kt</div>
                     </td>
                     <td>
-                        <div>{{aerodromeweather.GustStrength}}kt</div>
+                        <div>{{aerodromeWeather.GustStrength}}kt</div>
                     </td>
                 </tr>
             </table>
-            <div class="temperaturetableAktualTime">Letzte aktualisierung {{aerodromeweather.last_update |date:'dd.MM.yyyy HH:mm'}}</div>
+            <div class="temperaturetableAktualTime">Letzte aktualisierung {{aerodromeWeather.last_update |date:'dd.MM.yyyy HH:mm'}}</div>
+        </div>
+    </div>
+
+    <div *ngIf="settings.showEvents" class="alert" style="background-color:white; color:black;font-variant: small-caps;">
+        <h2 style="text-align: left;font-weight: bold; font-variant: small-caps;font-size: 3vmin">AKTUELLE EVENTS</h2>
+        <div>
+            <div [hidden]="!events.showError">
+                <h3 style="color: red;margin-top: 5vmin;">{{events.error}}</h3>
+            </div>
+            <table [hidden]="events.showError" class=" reservtable ">
+                <tr style="background-color: lightgray; ">
+                    <th>
+                        <div>Von</div>
+                    </th>
+                    <th>
+                        <div>Bis</div>
+                    </th>
+                    <th>
+                        <div>Bemerkung</div>
+                    </th>
+                </tr>
+                <tr *ngFor="let event of events">
+                    <td valign="top" style="width:15% !important;">
+                        <div>{{event.From | date:"HH:mm "}}</div>
+                        <div style="font-size:small;font-weight: bold;" [hidden]="!event.MultiDayEvent">({{event.From | date:"dd.MM.yyyy"}})</div>
+                    </td>
+                    <td valign="top" style="width:15% !important;">
+                        <div>{{event.Until | date:"HH:mm "}}</div>
+                        <div style="font-size:small;font-weight: bold;" [hidden]="!event.MultiDayEvent">({{event.Until | date:"dd.MM.yyyy"}})</div>
+                    </td>
+                    <td>
+                        <div style="white-space: pre-wrap;">{{event.Description}}</div>
+                    </td>
+                </tr>
+            </table>
         </div>
     </div>
 
@@ -106,44 +134,37 @@
             <table [hidden]="flights.showError" class=" reservtable ">
                 <tr style="background-color: lightgray; ">
                     <th>
+                        <div></div>
+                    </th>
+                    <th>
                         <div>Flugzeug</div>
                     </th>
                     <th>
                         <div>Zeit</div>
                     </th>
                     <th>
-                        <div>Erwartet</div>
+                        <div>Von/Nach</div>
                     </th>
                     <th>
-                        <div>Pilot</div>
-                    </th>
-                    <th>
-                        <div>Nach</div>
-                    </th>
-                    <th>
-                        <div>Flugtyp</div>
+                        <div>Pilog</div>
                     </th>
                 </tr>
                 <tr *ngFor="let flight of flights">
                     <td style="white-space:nowrap;">
-                        <div style="width:20%;">{{flight.Registration}}</div>
+                        <div style="width:20%;"><img [hidden]="!flight.takeOff" src="assets/images/takeoff.png"><img [hidden]="flight.takeOff" src="assets/images/landing.png"></div>
                     </td>
                     <td>
-                        <div>{{flight.TakeOff | date:"HH:mm "}}</div>
-                        <div style="font-size:small;font-weight: bold;" [hidden]="!flight.Multidayflight">({{flight.TakeOff | date:"dd.MM.yyyy"}})</div>
+                        <div>{{flight.Registration}}/{{flight.AircraftType}}</div>
                     </td>
                     <td>
-                        <div>{{flight.Landing | date:"HH:mm "}}</div>
-                        <div style="font-size:small;font-weight: bold;" [hidden]="!flight.Multidayflight">({{flight.Landing | date:"dd.MM.yyyy"}})</div>
+                        <div>{{flight.DateOfFlight | date:"HH:mm "}}</div>
+                        <div style="font-size:small;font-weight: bold;" [hidden]="flight.IsTodayFlight">({{flight.DateOfFlight | date:"dd.MM.yyyy"}})</div>
+                    </td>
+                    <td>
+                        <div>{{flight.Location}}</div>
                     </td>
                     <td>
                         <div>{{flight.Pilot}}</div>
-                    </td>
-                    <td>
-                        <div>{{flight.Destination}}</div>
-                    </td>
-                    <td>
-                        <div>{{flight.TypeOfFlight}}</div>
                     </td>
                 </tr>
             </table>
@@ -178,20 +199,20 @@
                     </th>
                 </tr>
                 <tr *ngFor="let reservation of reservations">
-                    <td style="white-space:nowrap;">
-                        <div style="width:20%;">{{reservation.Registration}}</div>
+                    <td style="white-space: nowrap;">
+                        <div style="width: 20%;">{{reservation.Registration}}</div>
                     </td>
                     <td>
                         <div>{{reservation.ReservationStart | date:"HH:mm "}}</div>
-                        <div style="font-size:small;font-weight: bold;" [hidden]="!reservation.Multidayflight">({{reservation.ReservationStart | date:"dd.MM.yyyy"}})</div>
+                        <div style="font-size: 1.5vmin; font-weight: bold;" [hidden]="!reservation.MultiDayFlight">({{reservation.ReservationStart | date:"dd.MM.yyyy"}})</div>
                     </td>
                     <td>
                         <div>{{reservation.ReservationEnd | date:"HH:mm "}}</div>
-                        <div style="font-size:small;font-weight: bold;" [hidden]="!reservation.Multidayflight">({{reservation.ReservationEnd | date:"dd.MM.yyyy"}})</div>
+                        <div style="font-size: 1.5vmin; font-weight: bold;" [hidden]="!reservation.MultiDayFlight">({{reservation.ReservationEnd | date:"dd.MM.yyyy"}})</div>
                     </td>
                     <td>
                         <div>{{reservation.Pilot}}</div>
-                        <div style="font-size:small;font-weight: bold;" [hidden]="!reservation.Waiting">(Warteliste)</div>
+                        <div style="font-size: 1.5vmin; font-weight: bold;" [hidden]="!reservation.Waiting">(Warteliste)</div>
                     </td>
                     <td>
                         <div>{{reservation.Destination}}</div>
