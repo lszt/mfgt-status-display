@@ -17,7 +17,8 @@ export class StatusComponent implements OnInit {
     reservations: any;
     aerodromeWeather: any;
     today: Date;
-
+    isPortrait = window.innerHeight > window.innerWidth;
+    
     constructor(public router: Router, mfgtService: MfgtService) {
         this.mfgtService = mfgtService;
         this.settings = { showEvents: false, showFlights: false, showReservations: false };
