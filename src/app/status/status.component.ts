@@ -68,6 +68,11 @@ export class StatusComponent implements OnInit {
                     if (!('requestReservationsDataEnabled' in this.settings)) {
                         this.settings['requestReservationsDataEnabled'] = true;
                     }
+                    
+                    this.isPortrait = !this.settings.showEvents &&
+                                      !this.settings.showFlights &&
+                                      !this.settings.showReservations;
+
                     this.log(data);
                     this.showStatus();
                 },
