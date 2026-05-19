@@ -37,6 +37,13 @@
         <p style="margin: 8px 0 0; font-size: 2.5vmin; opacity: 0.85;">info&#64;mfgt.ch</p>
     </div>
 
+    @if (settings.showQRCode) {
+    <div class="alert" style="background-color: white; color: black; text-align: center; padding: 2vmin;">
+        <p style="font-size: 2.5vmin; font-weight: bold; font-variant: small-caps; margin-bottom: 1vmin;">Landung erfassen</p>
+        <qrcode [qrdata]="'https://flights.lszt.ch?kt=pa4ieC'" [width]="200" [errorCorrectionLevel]="'M'"></qrcode>
+    </div>
+    }
+
     @if (settings.showWeather) {
     <div
         class="alert temperature"
