@@ -5,7 +5,8 @@ import { MfgtService } from 'app/shared/services/mfgtService';
 @Component({
     selector: 'app-status',
     templateUrl: './status.component.html',
-    styleUrls: ['./status.component.scss']
+    styleUrls: ['./status.component.scss'],
+    standalone: false
 })
 export class StatusComponent implements OnInit {
     mfgtService: MfgtService;
@@ -112,18 +113,16 @@ export class StatusComponent implements OnInit {
                         this.status['statusColor'] = 'alert-success';
                         this.status['statusText'] = 'Flugplatz offen';
                     }
-                    // tslint:disable-next-line:one-line
-                    else if (this.status.status === 'restricted') {
+                                       else if (this.status.status === 'restricted') {
                         this.status['statusColor'] = 'alert-warning';
                         this.status['statusText'] = 'Flugplatz eingeschränkt';
                     }
-                    // tslint:disable-next-line:one-line
-                    else { // closed
+                                       else { // closed
                         this.status['statusColor'] = 'alert-danger';
                         this.status['statusText'] = 'Flugplatz geschlossen';
                     }
                 },
-                error: (error) => {
+                error: (_error) => {
                     this.status = {
                                     'message': '',
                                     'statusColor': 'alert-danger',
@@ -148,7 +147,7 @@ export class StatusComponent implements OnInit {
                     this.aerodromeWeather.WindStrength = Math.round(this.aerodromeWeather.WindStrength / 1.84);
                     this.aerodromeWeather.GustStrength = Math.round(this.aerodromeWeather.GustStrength / 1.84);
                 },
-                error: (error) => {
+                error: (_error) => {
                     this.aerodromeWeather = {};
                     this.aerodromeWeather['error'] = 'WEATHER data not available';
                     this.aerodromeWeather['Temperature'] = '00.0';
@@ -195,7 +194,7 @@ export class StatusComponent implements OnInit {
                     this.events['showError'] = false;
                     this.events['error'] = '';
                 },
-                error: (error) => {
+                error: (_error) => {
                     this.events['showError'] = true;
                     this.events['error'] = 'FLIGHTS not available!';
                 },
@@ -229,7 +228,7 @@ export class StatusComponent implements OnInit {
                     this.flights['showError'] = false;
                     this.flights['error'] = '';
                 },
-                error: (error) => {
+                error: (_error) => {
                     this.flights['showError'] = true;
                     this.flights['error'] = 'FLIGHTS not available!';
                 },
@@ -254,7 +253,6 @@ export class StatusComponent implements OnInit {
 
                     this.reservations = this.reservations.filter(function(e) {
                         const dateStart = new Date(e.ReservationStart);
-                        const dateEndDate = new Date(e.ReservationEnd);
                         const dateEnd = new Date(e.ReservationEnd).getTime();
 
                         // mark flight as multi day flight if diff(detect next midnight) > 0ms
@@ -279,7 +277,7 @@ export class StatusComponent implements OnInit {
                     this.reservations['showError'] = false;
                     this.reservations['error'] = '';
                 },
-                error: (error) => {
+                error: (_error) => {
                     this.reservations['showError'] = true;
                     this.reservations['error'] = 'RESERVATIONS not available!';
                 },
