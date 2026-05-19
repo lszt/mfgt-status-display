@@ -38,9 +38,12 @@
     </div>
 
     @if (settings.showQRCode) {
-    <div class="alert" style="background-color: white; color: black; text-align: center; padding: 2vmin;">
-        <p style="font-size: 2.5vmin; font-weight: bold; font-variant: small-caps; margin-bottom: 1vmin;">Landung erfassen</p>
-        <qrcode [qrdata]="'https://flights.lszt.ch/#/?t=uGhog5'" [width]="200" [errorCorrectionLevel]="'M'"></qrcode>
+    <div style="background: white; border-radius: 6px; overflow: hidden; margin-bottom: 10px; display: flex; align-items: stretch;">
+        <div style="background: #5cb85c; width: 1.5vmin; flex-shrink: 0;"></div>
+        <div style="display: flex; align-items: center; gap: 3vmin; padding: 2vmin 3vmin; flex: 1;">
+            <p style="font-size: 3vmin; font-weight: bold; font-variant: small-caps; color: #333; margin: 0; line-height: 1.3; flex: 1;">Landung<br>erfassen</p>
+            <qrcode [qrdata]="'https://flights.lszt.ch/#/?t=uGhog5'" [width]="112" [errorCorrectionLevel]="'M'" [margin]="1"></qrcode>
+        </div>
     </div>
     }
 
