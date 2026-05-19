@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { TranslateHttpLoader, provideTranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -31,6 +31,7 @@ import { HeaderComponent, SidebarComponent } from 'app/shared';
     providers: [
         MfgtService,
         provideHttpClient(withInterceptorsFromDi()),
+        provideTranslateHttpLoader(),
     ]
 })
 export class AppModule { }
