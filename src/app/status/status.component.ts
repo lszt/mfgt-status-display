@@ -69,6 +69,9 @@ export class StatusComponent implements OnInit {
                     if (!('requestReservationsDataEnabled' in this.settings)) {
                         this.settings['requestReservationsDataEnabled'] = true;
                     }
+                    if (!('showQRCode' in this.settings)) {
+                        this.settings['showQRCode'] = false;
+                    }
                     
                     this.isPortrait = !this.settings.showEvents &&
                                       !this.settings.showFlights &&

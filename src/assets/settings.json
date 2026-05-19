@@ -7,5 +7,6 @@
     "requestWeatherDataEnabled": false,
     "requestEventsDataEnabled": true,
     "requestFlightDataEnabled": true,
-    "requestReservationsDataEnabled": true
+    "requestReservationsDataEnabled": true,
+    "showQRCode": false
 }

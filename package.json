@@ -30,6 +30,7 @@
     "@ngx-translate/core": "^17.0.0",
     "@ngx-translate/http-loader": "^17.0.0",
     "@popperjs/core": "^2.11.8",
+    "angularx-qrcode": "^21.0.5",
     "bootstrap": "^5.2.3",
     "chart.js": "^4.5.1",
     "core-js": "3.30.1",
