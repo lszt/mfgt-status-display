@@ -1,6 +1,7 @@
 $topnav-background-color: #222;
 :host {
     display: block;
+    height: 100vh;
 }
 
 .status-page {
@@ -34,9 +35,10 @@ $topnav-background-color: #222;
 }
 
 .header {
-    // height: 106px;
-    height: 10%;
+    height: 10vh;
+    max-height: 10vh;
     background-color: white;
+    overflow: hidden;
 }
 
 .status {
