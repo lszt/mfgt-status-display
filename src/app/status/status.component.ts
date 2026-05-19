@@ -103,14 +103,10 @@ export class StatusComponent implements OnInit {
                     // this.status.message = "TEST das ist eine Zeile \r\nZweite Zeile definiert\r\n";
                     // this.status.message = "TEST das ist eine Zeile \r\nZweite Zeile definiert\r\nUnd eine dritte Zeile";
 
-                    const messageLines = this.status.message.split('\r\n');
-                    this.status.message = '';
-                    for (let i = 0; i < messageLines.length; i++) {
-                        if (messageLines[i] !== '') {
-                            this.status.message += '\r\n';
-                        }
-                        this.status.message += messageLines[i];
-                    }
+                    this.status.message = this.status.message
+                        .split('\r\n')
+                        .filter(l => l.trim() !== '')
+                        .join('\r\n');
 
                     if (this.status.status === 'open') {
                         this.status['statusColor'] = 'alert-success';

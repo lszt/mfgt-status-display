@@ -2,7 +2,7 @@
     <div class="alert header" style="background-color: white">
         <div class="row" style="height: 100%">
             <div class="col-md-6" style="height: 100%; text-align: left">
-                <img src="assets/images/mfgt_logo.jpg" style="height: 100%" />
+                <img src="assets/images/mfgt_logo.jpg" style="max-height: 9vh; width: auto;" />
             </div>
             <div class="col-md-6">
                 <p class="statusUpdateInfo">
@@ -15,30 +15,29 @@
     <div
         class="alert status"
         [ngClass]="status.statusColor"
-        style="display: flex; align-items: center; gap: 2vmin; width: 100%"
+        style="position: relative; width: 100%"
+        [style.padding-right]="settings.showQRCode ? '16vmin' : null"
     >
-        <div style="flex: 1; min-width: 0;">
-            <p style="font-size: 13vmin; white-space: wrap; line-height: 1em">
-                <strong>{{ status.statusText }}</strong>
-            </p>
-            <p
-                [style.white-space]="isPortrait ? 'pre-wrap' : 'normal'"
-                [style.padding]="isPortrait ? '0' : '15px'"
-                style="
-                    margin: 0;
-                    font-size: 5vmin;
-                    font-weight: bolder;
-                    background-color: white;
-                    color: black;
-                    border-radius: 5px;
-                "
-            >
-                {{ status.message }}
-            </p>
-            <p style="margin: 8px 0 0; font-size: 2.5vmin; opacity: 0.85;">info&#64;mfgt.ch</p>
-        </div>
+        <p style="font-size: 13vmin; white-space: wrap; line-height: 1em">
+            <strong>{{ status.statusText }}</strong>
+        </p>
+        <p
+            [style.white-space]="isPortrait ? 'pre-wrap' : 'normal'"
+            [style.padding]="isPortrait ? '0' : '15px'"
+            style="
+                margin: 0;
+                font-size: 5vmin;
+                font-weight: bolder;
+                background-color: white;
+                color: black;
+                border-radius: 5px;
+            "
+        >
+            {{ status.message }}
+        </p>
+        <p style="margin: 8px 0 0; font-size: 2.5vmin; opacity: 0.85;">info&#64;mfgt.ch</p>
         @if (settings.showQRCode) {
-        <div style="flex-shrink: 0; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+        <div style="position: absolute; right: 2vmin; top: 50%; transform: translateY(-50%); text-align: center; min-width: 14vmin;">
             <qrcode [qrdata]="'https://flights.lszt.ch/#/?t=uGhog5'" [width]="120" [errorCorrectionLevel]="'M'" [margin]="2"></qrcode>
             <p style="font-size: 2vmin; font-variant: small-caps; opacity: 0.85; margin: 0.5vmin 0 0;">Landung erfassen</p>
         </div>
