@@ -1,0 +1,25 @@
+{
+  "schedule": {
+    "Value": [
+      {
+        "items": [
+          {
+            "autoReload": 60000,
+            "cachePolicy": "forever",
+            "content": "https://outdoor1--chairman-andrea-63473.netlify.app/",
+            "duration": 86400000,
+            "repetition": "d",
+            "start": "Fri Jan 01 2016 00:00:00 GMT+0100",
+            "zone": "fs",
+            "zoneHeight": "30%",
+            "zoneWidth": "30%",
+            "zoneXOffset": "0",
+            "zoneYOffset": "0"
+          }
+        ],
+        "name": "EXtended Status Display",
+        "defaultUrl": "https://outdoor1--chairman-andrea-63473.netlify.app/"
+      }
+    ]
+  }
+}

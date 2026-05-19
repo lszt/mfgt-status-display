@@ -37,9 +37,7 @@ export class StatusComponent implements OnInit {
     ngOnInit() {
         this.updateStatus();
 
-        setInterval(() => {
-            this.updateStatus();
-        }, 60000);
+        // autoReload handled by Chrome Sign Builder (60s full page reload)
     }
 
     // update status and settings periodically
