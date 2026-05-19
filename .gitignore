@@ -44,3 +44,9 @@ Thumbs.db
 
 # Build directory
 dist
+
+# Angular build cache
+.angular/cache
+
+# Playwright MCP
+.playwright-mcp/
