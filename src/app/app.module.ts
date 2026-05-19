@@ -1,4 +1,4 @@
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { MfgtService } from 'app/shared/services/mfgtService';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -16,16 +16,13 @@ export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http, '/assets/i18n/', '.json');
 }
 
-@NgModule({
-    declarations: [
+@NgModule({ declarations: [
         AppComponent,
         HeaderComponent,
         SidebarComponent,
     ],
-    imports: [
-        BrowserModule,
+    bootstrap: [AppComponent], imports: [BrowserModule,
         FormsModule,
-        HttpClientModule,
         AppRoutingModule,
         TranslateModule.forRoot({
             loader: {
@@ -33,11 +30,8 @@ export function HttpLoaderFactory(http: HttpClient) {
                 useFactory: HttpLoaderFactory,
                 deps: [HttpClient]
             }
-        })
-    ],
-    providers: [
-            MfgtService,
-        ],
-    bootstrap: [AppComponent]
-})
+        })], providers: [
+        MfgtService,
+        provideHttpClient(withInterceptorsFromDi()),
+    ] })
 export class AppModule { }
