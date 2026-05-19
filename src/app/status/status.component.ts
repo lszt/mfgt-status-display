@@ -37,9 +37,9 @@ export class StatusComponent implements OnInit {
     ngOnInit() {
         this.updateStatus();
 
-        // setInterval(() => {
-        //     this.updateStatus();
-        // }, 10000);
+        setInterval(() => {
+            this.updateStatus();
+        }, 60000);
     }
 
     // update status and settings periodically
