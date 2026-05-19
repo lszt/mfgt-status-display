@@ -8,5 +8,5 @@
     "requestEventsDataEnabled": true,
     "requestFlightDataEnabled": true,
     "requestReservationsDataEnabled": true,
-    "showQRCode": false
+    "showQRCode": true
 }
