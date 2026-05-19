@@ -1,40 +1,66 @@
 <div class="status-page">
-    <div class="alert header" style="background-color: white;">
-        <div class="row" style="height: 100%;">
-            <div class="col-md-6" style="height: 100%; text-align:left;">
-                <img src="assets/images/mfgt_logo.jpg" style="height: 100%;">
+    <div class="alert header" style="background-color: white">
+        <div class="row" style="height: 100%">
+            <div class="col-md-6" style="height: 100%; text-align: left">
+                <img src="assets/images/mfgt_logo.jpg" style="height: 100%" />
             </div>
             <div class="col-md-6">
-                <p class="statusUpdateInfo">{{status.last_update_date |date:'dd.MM.yyyy HH:mm'}}, {{status.last_update_by}}</p>
+                <p class="statusUpdateInfo">
+                    {{ status.last_update_date | date : "dd.MM.yyyy HH:mm" }},
+                    {{ status.last_update_by }}
+                </p>
             </div>
         </div>
     </div>
-    <div class="alert status" [ngClass]="status.statusColor" style="display: table; width: 100%;">
-        <p style="font-size: 13vmin;white-space: wrap;line-height: 1em;"><strong>{{status.statusText}}</strong></p>
-        <p style="white-space: pre-wrap; margin: 0;font-size:5vmin;font-weight:bolder;background-color:white;color:black; border-radius: 5px;">{{status.message}}</p>
+    <div
+        class="alert status"
+        [ngClass]="status.statusColor"
+        style="display: table; width: 100%"
+    >
+        <p style="font-size: 13vmin; white-space: wrap; line-height: 1em">
+            <strong>{{ status.statusText }}</strong>
+        </p>
+        <p
+            [style.white-space]="isPortrait ? 'pre-wrap' : 'normal'"
+            [style.padding]="isPortrait ? '0' : '15px'"
+            style="
+                margin: 0;
+                font-size: 5vmin;
+                font-weight: bolder;
+                background-color: white;
+                color: black;
+                border-radius: 5px;
+            "
+        >
+            {{ status.message }}
+        </p>
     </div>
 
-    <div *ngIf="settings.showWeather" class="alert temperature" style="background-color:white; color:black;">
+    @if (settings.showWeather) {
+    <div
+        class="alert temperature"
+        style="background-color: white; color: black"
+    >
         <div>
             <table class="temperaturetable">
                 <tr>
                     <td>
-                        <img src="assets/images/thermometer.png">
+                        <img src="assets/images/thermometer.png" />
                     </td>
                     <td>
-                        <img src="assets/images/humidity.png">
+                        <img src="assets/images/humidity.png" />
                     </td>
                     <td>
-                        <img src="assets/images/pressure.png">
+                        <img src="assets/images/pressure.png" />
                     </td>
                     <td>
-                        <img src="assets/images/wind.png">
+                        <img src="assets/images/wind.png" />
                     </td>
                     <td>
-                        <img src="assets/images/gusts.png">
+                        <img src="assets/images/gusts.png" />
                     </td>
                 </tr>
-                <tr style="font-size: 1.9vmin;">
+                <tr style="font-size: 1.9vmin">
                     <td>
                         <div>Temperatur</div>
                     </td>
@@ -53,19 +79,19 @@
                 </tr>
                 <tr>
                     <td>
-                        <div>{{aerodromeWeather.Temperature}}</div>
+                        <div>{{ aerodromeWeather.Temperature }}</div>
                     </td>
                     <td>
-                        <div>{{aerodromeWeather.Humidity}}</div>
+                        <div>{{ aerodromeWeather.Humidity }}</div>
                     </td>
                     <td>
-                        <div>{{aerodromeWeather.Pressure}}</div>
+                        <div>{{ aerodromeWeather.Pressure }}</div>
                     </td>
                     <td>
-                        <div>{{aerodromeWeather.WindAngle}}°</div>
+                        <div>{{ aerodromeWeather.WindAngle }}°</div>
                     </td>
                     <td>
-                        <div>{{aerodromeWeather.GustAngle}}°</div>
+                        <div>{{ aerodromeWeather.GustAngle }}°</div>
                     </td>
                 </tr>
                 <tr>
@@ -79,25 +105,42 @@
                         <div>hPa</div>
                     </td>
                     <td>
-                        <div>{{aerodromeWeather.WindStrength}}kt</div>
+                        <div>{{ aerodromeWeather.WindStrength }}kt</div>
                     </td>
                     <td>
-                        <div>{{aerodromeWeather.GustStrength}}kt</div>
+                        <div>{{ aerodromeWeather.GustStrength }}kt</div>
                     </td>
                 </tr>
             </table>
-            <div class="temperaturetableAktualTime">Letzte aktualisierung {{aerodromeWeather.last_update |date:'dd.MM.yyyy HH:mm'}}</div>
+            <div class="temperaturetableAktualTime">
+                Letzte aktualisierung
+                {{ aerodromeWeather.last_update | date : "dd.MM.yyyy HH:mm" }}
+            </div>
         </div>
     </div>
-
-    <div *ngIf="settings.showEvents" class="alert" style="background-color:white; color:black;font-variant: small-caps;">
-        <h2 style="text-align: left;font-weight: bold; font-variant: small-caps;font-size: 3vmin">AKTUELLE EVENTS</h2>
+    } @if (settings.showEvents) {
+    <div
+        class="alert"
+        style="background-color: white; color: black; font-variant: small-caps"
+    >
+        <h2
+            style="
+                text-align: left;
+                font-weight: bold;
+                font-variant: small-caps;
+                font-size: 3vmin;
+            "
+        >
+            AKTUELLE EVENTS
+        </h2>
         <div>
             <div [hidden]="!events.showError">
-                <h3 style="color: red;margin-top: 5vmin;">{{events.error}}</h3>
+                <h3 style="color: red; margin-top: 5vmin">
+                    {{ events.error }}
+                </h3>
             </div>
-            <table [hidden]="events.showError" class=" reservtable ">
-                <tr style="background-color: lightgray; ">
+            <table [hidden]="events.showError" class="reservtable">
+                <tr style="background-color: lightgray">
                     <th>
                         <div>Von</div>
                     </th>
@@ -108,31 +151,59 @@
                         <div>Bemerkung</div>
                     </th>
                 </tr>
-                <tr *ngFor="let event of events">
-                    <td valign="top" style="width:15% !important;">
-                        <div>{{event.From | date:"HH:mm "}}</div>
-                        <div style="font-size:small;font-weight: bold;" [hidden]="!event.MultiDayEvent">({{event.From | date:"dd.MM.yyyy"}})</div>
+                @for (event of events; track event) {
+                <tr>
+                    <td valign="top" style="width: 15% !important">
+                        <div>{{ event.From | date : "HH:mm " }}</div>
+                        <div
+                            style="font-size: small; font-weight: bold"
+                            [hidden]="!event.MultiDayEvent"
+                        >
+                            ({{ event.From | date : "dd.MM.yyyy" }})
+                        </div>
                     </td>
-                    <td valign="top" style="width:15% !important;">
-                        <div>{{event.Until | date:"HH:mm "}}</div>
-                        <div style="font-size:small;font-weight: bold;" [hidden]="!event.MultiDayEvent">({{event.Until | date:"dd.MM.yyyy"}})</div>
+                    <td valign="top" style="width: 15% !important">
+                        <div>{{ event.Until | date : "HH:mm " }}</div>
+                        <div
+                            style="font-size: small; font-weight: bold"
+                            [hidden]="!event.MultiDayEvent"
+                        >
+                            ({{ event.Until | date : "dd.MM.yyyy" }})
+                        </div>
                     </td>
                     <td>
-                        <div style="white-space: pre-wrap;">{{event.Description}}</div>
+                        <div style="white-space: pre-wrap">
+                            {{ event.Description }}
+                        </div>
                     </td>
                 </tr>
+                }
             </table>
         </div>
     </div>
-
-    <div *ngIf="settings.showFlights" class="alert" style="background-color:white; color:black;">
-        <h2 style="text-align: left;font-weight: bold; font-variant: small-caps;font-size: 3vmin">AKTUELLE FLÜGE&nbsp;&nbsp;<span style="font-size: 2vmin; font-weight: bold;">{{today | date:"dd.MM.yyyy"}}</span></h2>
+    } @if (settings.showFlights) {
+    <div class="alert" style="background-color: white; color: black">
+        <h2
+            style="
+                text-align: left;
+                font-weight: bold;
+                font-variant: small-caps;
+                font-size: 3vmin;
+            "
+        >
+            AKTUELLE FLÜGE&nbsp;&nbsp;<span
+                style="font-size: 2vmin; font-weight: bold"
+                >{{ today | date : "dd.MM.yyyy" }}</span
+            >
+        </h2>
         <div>
             <div [hidden]="!flights.showError">
-                <h3 style="color: red;margin-top: 5vmin;">{{flights.error}}</h3>
+                <h3 style="color: red; margin-top: 5vmin">
+                    {{ flights.error }}
+                </h3>
             </div>
-            <table [hidden]="flights.showError" class=" reservtable ">
-                <tr style="background-color: lightgray; ">
+            <table [hidden]="flights.showError" class="reservtable">
+                <tr style="background-color: lightgray">
                     <th>
                         <div></div>
                     </th>
@@ -149,36 +220,67 @@
                         <div>Pilog</div>
                     </th>
                 </tr>
-                <tr *ngFor="let flight of flights">
-                    <td style="white-space:nowrap;">
-                        <div style="width:20%;"><img [hidden]="!flight.takeOff" src="assets/images/takeoff.png"><img [hidden]="flight.takeOff" src="assets/images/landing.png"></div>
+                @for (flight of flights; track flight) {
+                <tr>
+                    <td style="white-space: nowrap">
+                        <div style="width: 20%">
+                            <img
+                                [hidden]="!flight.takeOff"
+                                src="assets/images/takeoff.png"
+                            /><img
+                                [hidden]="flight.takeOff"
+                                src="assets/images/landing.png"
+                            />
+                        </div>
                     </td>
                     <td>
-                        <div>{{flight.Registration}}/{{flight.AircraftType}}</div>
+                        <div>
+                            {{ flight.Registration }}/{{ flight.AircraftType }}
+                        </div>
                     </td>
                     <td>
-                        <div>{{flight.DateOfFlight | date:"HH:mm "}}</div>
-                        <div style="font-size:small;font-weight: bold;" [hidden]="flight.IsTodayFlight">({{flight.DateOfFlight | date:"dd.MM.yyyy"}})</div>
+                        <div>{{ flight.DateOfFlight | date : "HH:mm " }}</div>
+                        <div
+                            style="font-size: small; font-weight: bold"
+                            [hidden]="flight.IsTodayFlight"
+                        >
+                            ({{ flight.DateOfFlight | date : "dd.MM.yyyy" }})
+                        </div>
                     </td>
                     <td>
-                        <div>{{flight.Location}}</div>
+                        <div>{{ flight.Location }}</div>
                     </td>
                     <td>
-                        <div>{{flight.Pilot}}</div>
+                        <div>{{ flight.Pilot }}</div>
                     </td>
                 </tr>
+                }
             </table>
         </div>
     </div>
-
-    <div *ngIf="settings.showReservations" class="alert reserv" style="background-color:white; color:black;">
-        <h2 style="text-align: left;font-weight: bold; font-variant: small-caps;font-size: 3vmin">GEPLANTE FLÜGE&nbsp;&nbsp;<span style="font-size: 2vmin; font-weight: bold;">{{today | date:"dd.MM.yyyy"}}</span></h2>
+    } @if (settings.showReservations) {
+    <div class="alert reserv" style="background-color: white; color: black">
+        <h2
+            style="
+                text-align: left;
+                font-weight: bold;
+                font-variant: small-caps;
+                font-size: 3vmin;
+            "
+        >
+            GEPLANTE FLÜGE&nbsp;&nbsp;<span
+                style="font-size: 2vmin; font-weight: bold"
+                >{{ today | date : "dd.MM.yyyy" }}</span
+            >
+        </h2>
         <div>
             <div [hidden]="!reservations.showError">
-                <h3 style="color: red;margin-top: 5vmin;">{{reservations.error}}</h3>
+                <h3 style="color: red; margin-top: 5vmin">
+                    {{ reservations.error }}
+                </h3>
             </div>
-            <table [hidden]="reservations.showError" class=" reservtable ">
-                <tr style="background-color: lightgray; ">
+            <table [hidden]="reservations.showError" class="reservtable">
+                <tr style="background-color: lightgray">
                     <th>
                         <div>Flugzeug</div>
                     </th>
@@ -198,32 +300,60 @@
                         <div>Flugtyp</div>
                     </th>
                 </tr>
-                <tr *ngFor="let reservation of reservations">
-                    <td style="white-space: nowrap;">
-                        <div style="width: 20%;">{{reservation.Registration}}</div>
+                @for (reservation of reservations; track reservation) {
+                <tr>
+                    <td style="white-space: nowrap">
+                        <div style="width: 20%">
+                            {{ reservation.Registration }}
+                        </div>
                     </td>
                     <td>
-                        <div>{{reservation.ReservationStart | date:"HH:mm "}}</div>
-                        <div style="font-size: 1.5vmin; font-weight: bold;" [hidden]="!reservation.MultiDayFlight">({{reservation.ReservationStart | date:"dd.MM.yyyy"}})</div>
+                        <div>
+                            {{ reservation.ReservationStart | date : "HH:mm " }}
+                        </div>
+                        <div
+                            style="font-size: 1.5vmin; font-weight: bold"
+                            [hidden]="!reservation.MultiDayFlight"
+                        >
+                            ({{
+                                reservation.ReservationStart
+                                    | date : "dd.MM.yyyy"
+                            }})
+                        </div>
                     </td>
                     <td>
-                        <div>{{reservation.ReservationEnd | date:"HH:mm "}}</div>
-                        <div style="font-size: 1.5vmin; font-weight: bold;" [hidden]="!reservation.MultiDayFlight">({{reservation.ReservationEnd | date:"dd.MM.yyyy"}})</div>
+                        <div>
+                            {{ reservation.ReservationEnd | date : "HH:mm " }}
+                        </div>
+                        <div
+                            style="font-size: 1.5vmin; font-weight: bold"
+                            [hidden]="!reservation.MultiDayFlight"
+                        >
+                            ({{
+                                reservation.ReservationEnd
+                                    | date : "dd.MM.yyyy"
+                            }})
+                        </div>
                     </td>
                     <td>
-                        <div>{{reservation.Pilot}}</div>
-                        <div style="font-size: 1.5vmin; font-weight: bold;" [hidden]="!reservation.Waiting">(Warteliste)</div>
+                        <div>{{ reservation.Pilot }}</div>
+                        <div
+                            style="font-size: 1.5vmin; font-weight: bold"
+                            [hidden]="!reservation.Waiting"
+                        >
+                            (Warteliste)
+                        </div>
                     </td>
                     <td>
-                        <div>{{reservation.Destination}}</div>
+                        <div>{{ reservation.Destination }}</div>
                     </td>
                     <td>
-                        <div>{{reservation.TypeOfFlight}}</div>
+                        <div>{{ reservation.TypeOfFlight }}</div>
                     </td>
                 </tr>
+                }
             </table>
         </div>
     </div>
-
-
+    }
 </div>
