@@ -1,0 +1,3 @@
+[    2172ms] [LOG] Angular is running in development mode. @ https://outdoor1--chairman-andrea-63473.netlify.app/vendor.js:68768
+[    2545ms] [LOG] StatusComponent.updateStatus @ https://outdoor1--chairman-andrea-63473.netlify.app/src_app_status_status_module_ts.js:101
+[    2778ms] [LOG] {showEvents: false, showFlights: false, showReservations: false, showWeather: false, requestAerodromeStatusDataEnabled: true} @ https://outdoor1--chairman-andrea-63473.netlify.app/src_app_status_status_module_ts.js:101

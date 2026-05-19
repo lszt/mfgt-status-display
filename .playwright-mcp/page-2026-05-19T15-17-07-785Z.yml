@@ -1,0 +1,24 @@
+- generic [ref=e1]:
+  - generic [ref=e3]:
+    - img [ref=e5]
+    - paragraph [ref=e7]: ","
+  - generic [ref=e8]:
+    - paragraph:
+      - strong
+    - paragraph [ref=e9]
+  - generic [ref=e10]:
+    - heading "GEPLANTE FLÜGE 19.05.2026" [level=2] [ref=e11]
+    - table [ref=e13]:
+      - row "Flugzeug Von Bis Pilot Ziel Flugtyp" [ref=e14]:
+        - columnheader "Flugzeug" [ref=e15]:
+          - generic [ref=e16]: Flugzeug
+        - columnheader "Von" [ref=e17]:
+          - generic [ref=e18]: Von
+        - columnheader "Bis" [ref=e19]:
+          - generic [ref=e20]: Bis
+        - columnheader "Pilot" [ref=e21]:
+          - generic [ref=e22]: Pilot
+        - columnheader "Ziel" [ref=e23]:
+          - generic [ref=e24]: Ziel
+        - columnheader "Flugtyp" [ref=e25]:
+          - generic [ref=e26]: Flugtyp
