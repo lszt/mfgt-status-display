@@ -33,8 +33,7 @@ $topnav-background-color: #222;
 
 .col-status {
     flex: 0 0 62%;
-    overflow-y: auto;
-    overflow-x: hidden;
+    overflow: hidden;
 }
 
 .col-pdf {

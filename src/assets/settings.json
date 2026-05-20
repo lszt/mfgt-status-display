@@ -1,13 +1,14 @@
 {
     "showEvents": false,
     "showFlights": false,
-    "showReservations": true,
+    "showReservations": false,
     "showWeather": false,
     "requestAerodromeStatusDataEnabled": true,
     "requestWeatherDataEnabled": false,
     "requestEventsDataEnabled": true,
     "requestFlightDataEnabled": true,
-    "requestReservationsDataEnabled": true,
+    "requestReservationsDataEnabled": false,
     "showQRCode": true,
-    "infoPdfUrl": ""
+    "infoPdfUrl": "https://drive.google.com/file/d/1vtRaPVCjV9vWDlVLCYwmkvhCzUgdY7os/view?usp=sharing",
+    "infoPdfPage": 1
 }
