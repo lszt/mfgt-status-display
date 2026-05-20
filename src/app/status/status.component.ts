@@ -44,6 +44,10 @@ export class StatusComponent implements OnInit {
             this.updateStatus();
         }, 60000);
 
+        // full reload every 10 minutes to pick up new deployments
+        setInterval(() => {
+            window.location.reload();
+        }, 10 * 60 * 1000);
     }
 
     // update status and settings periodically
