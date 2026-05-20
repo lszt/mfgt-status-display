@@ -8,5 +8,6 @@
     "requestEventsDataEnabled": true,
     "requestFlightDataEnabled": true,
     "requestReservationsDataEnabled": true,
-    "showQRCode": true
+    "showQRCode": true,
+    "infoPdfUrl": ""
 }

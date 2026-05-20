@@ -12,6 +12,8 @@
             </div>
         </div>
     </div>
+    <div class="content-row">
+    <div class="col-status">
     <div
         class="alert status"
         [ngClass]="status.statusColor"
@@ -364,4 +366,11 @@
         </div>
     </div>
     }
+    </div><!-- col-status -->
+    @if (pdfUrl) {
+    <div class="col-pdf">
+        <iframe [src]="pdfUrl" frameborder="0" allowfullscreen></iframe>
+    </div>
+    }
+    </div><!-- content-row -->
 </div>
