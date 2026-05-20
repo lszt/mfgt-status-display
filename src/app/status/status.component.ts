@@ -78,9 +78,20 @@ export class StatusComponent implements OnInit {
                     if (!('infoPdfUrl' in this.settings)) {
                         this.settings['infoPdfUrl'] = '';
                     }
-                    this.pdfUrl = this.settings.infoPdfUrl
-                        ? this.sanitizer.bypassSecurityTrustResourceUrl(this.settings.infoPdfUrl)
-                        : null;
+                    if (!('infoPdfPage' in this.settings)) {
+                        this.settings['infoPdfPage'] = 1;
+                    }
+                    if (this.settings.infoPdfUrl) {
+                        // normalise Google Drive share links to preview embed URLs
+                        const base = this.settings.infoPdfUrl
+                            .replace('/view', '/preview')
+                            .split('?')[0];
+                        const page = this.settings.infoPdfPage || 1;
+                        const url = page > 1 ? `${base}#page=${page}` : base;
+                        this.pdfUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url);
+                    } else {
+                        this.pdfUrl = null;
+                    }
 
                     this.isPortrait = !this.settings.showEvents &&
                                       !this.settings.showFlights &&

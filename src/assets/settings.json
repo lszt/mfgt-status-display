@@ -9,5 +9,6 @@
     "requestFlightDataEnabled": true,
     "requestReservationsDataEnabled": true,
     "showQRCode": true,
-    "infoPdfUrl": ""
+    "infoPdfUrl": "https://drive.google.com/file/d/1vtRaPVCjV9vWDlVLCYwmkvhCzUgdY7os/view?usp=sharing",
+    "infoPdfPage": 1
 }
