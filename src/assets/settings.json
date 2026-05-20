@@ -1,12 +1,13 @@
 {
     "showEvents": false,
     "showFlights": false,
-    "showReservations": false,
+    "showReservations": true,
     "showWeather": false,
     "requestAerodromeStatusDataEnabled": true,
     "requestWeatherDataEnabled": false,
     "requestEventsDataEnabled": true,
     "requestFlightDataEnabled": true,
-    "requestReservationsDataEnabled": false,
-    "showQRCode": true
+    "requestReservationsDataEnabled": true,
+    "showQRCode": true,
+    "infoPdfUrl": ""
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { MfgtService } from 'app/shared/services/mfgtService';
 
 @Component({
@@ -19,8 +20,9 @@ export class StatusComponent implements OnInit {
     aerodromeWeather: any;
     today: Date;
     isPortrait = window.innerHeight > window.innerWidth;
-    
-    constructor(public router: Router, mfgtService: MfgtService) {
+    pdfUrl: SafeResourceUrl | null = null;
+
+    constructor(public router: Router, mfgtService: MfgtService, private sanitizer: DomSanitizer) {
         this.mfgtService = mfgtService;
         this.settings = { showEvents: false, showFlights: false, showReservations: false };
         this.status = {};
@@ -41,6 +43,7 @@ export class StatusComponent implements OnInit {
         setInterval(() => {
             this.updateStatus();
         }, 60000);
+
     }
 
     // update status and settings periodically
@@ -72,7 +75,13 @@ export class StatusComponent implements OnInit {
                     if (!('showQRCode' in this.settings)) {
                         this.settings['showQRCode'] = false;
                     }
-                    
+                    if (!('infoPdfUrl' in this.settings)) {
+                        this.settings['infoPdfUrl'] = '';
+                    }
+                    this.pdfUrl = this.settings.infoPdfUrl
+                        ? this.sanitizer.bypassSecurityTrustResourceUrl(this.settings.infoPdfUrl)
+                        : null;
+
                     this.isPortrait = !this.settings.showEvents &&
                                       !this.settings.showFlights &&
                                       !this.settings.showReservations;
