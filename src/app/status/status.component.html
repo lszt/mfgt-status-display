@@ -37,9 +37,9 @@
         </p>
         <p style="margin: 8px 0 0; font-size: 2.5vmin; opacity: 0.85;">info&#64;mfgt.ch</p>
         @if (settings.showQRCode) {
-        <div style="position: absolute; right: 2vmin; top: 50%; transform: translateY(-50%); text-align: center; min-width: 14vmin;">
-            <qrcode [qrdata]="'https://flights.lszt.ch/#/?t=uGhog5'" [width]="120" [errorCorrectionLevel]="'M'" [margin]="2"></qrcode>
-            <p style="font-size: 2vmin; font-variant: small-caps; opacity: 0.85; margin: 0.5vmin 0 0;">Landung erfassen</p>
+        <div style="position: absolute; right: 2vmin; top: 1.5vmin; text-align: center; min-width: 14vmin;">
+            <qrcode [qrdata]="'https://flights.lszt.ch/#/?t=uGhog5'" [width]="120" [errorCorrectionLevel]="'M'" [margin]="0"></qrcode>
+            <p style="font-size: 2vmin; font-variant: small-caps; opacity: 0.85; margin: 0.5vmin 0 0; line-height: 1.2;">Landung<br>erfassen</p>
         </div>
         }
     </div>
