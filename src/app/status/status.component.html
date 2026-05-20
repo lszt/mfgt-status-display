@@ -39,7 +39,7 @@
             <p style="margin: 0; font-size: 2.5vmin; opacity: 0.85;">info&#64;mfgt.ch</p>
             @if (settings.showQRCode) {
             <div style="text-align: center;">
-                <qrcode [qrdata]="'https://lszt.flightbox.aero/#/?t=uGhog5'" [width]="80" [errorCorrectionLevel]="'M'" [margin]="0"></qrcode>
+                <qrcode [qrdata]="settings.landingQrUrl" [width]="80" [errorCorrectionLevel]="'M'" [margin]="0"></qrcode>
                 <p style="font-size: 1.8vmin; font-variant: small-caps; opacity: 0.85; margin: 0.3vmin 0 0; line-height: 1.2;">Landung erfassen</p>
             </div>
             }
