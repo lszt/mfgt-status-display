@@ -80,7 +80,7 @@ export class StatusComponent implements OnInit {
                         this.settings['showQRCode'] = false;
                     }
                     if (!('landingQrUrl' in this.settings)) {
-                        this.settings['landingQrUrl'] = 'https://lszt.flightbox.aero/#/?t=7e692226-8445-45c2-9e67-4eb291cbd899';
+                        this.settings['landingQrUrl'] = '';
                     }
                     if (!('infoPdfUrl' in this.settings)) {
                         this.settings['infoPdfUrl'] = '';
