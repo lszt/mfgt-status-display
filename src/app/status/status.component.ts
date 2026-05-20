@@ -86,13 +86,14 @@ export class StatusComponent implements OnInit {
                         this.settings['infoPdfPage'] = 1;
                     }
                     if (this.settings.infoPdfUrl) {
-                        // normalise Google Drive share links to preview embed URLs
-                        const base = this.settings.infoPdfUrl
-                            .replace('/view', '/preview')
-                            .split('?')[0];
-                        const page = this.settings.infoPdfPage || 1;
-                        const url = page > 1 ? `${base}#page=${page}` : base;
-                        this.pdfUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url);
+                        let rawUrl = this.settings.infoPdfUrl;
+                        // convert Google Drive share links to direct download URL
+                        const driveMatch = rawUrl.match(/drive\.google\.com\/file\/d\/([^/?]+)/);
+                        if (driveMatch) {
+                            rawUrl = `https://drive.google.com/uc?export=download&id=${driveMatch[1]}`;
+                        }
+                        const viewerUrl = `https://view.officeapps.live.com/op/embed.aspx?src=${encodeURIComponent(rawUrl)}`;
+                        this.pdfUrl = this.sanitizer.bypassSecurityTrustResourceUrl(viewerUrl);
                     } else {
                         this.pdfUrl = null;
                     }
