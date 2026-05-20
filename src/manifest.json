@@ -1,0 +1,9 @@
+{
+  "name": "MFGT Status Display",
+  "short_name": "MFGT Status",
+  "start_url": "/status",
+  "display": "fullscreen",
+  "background_color": "#222222",
+  "theme_color": "#222222",
+  "orientation": "landscape"
+}
