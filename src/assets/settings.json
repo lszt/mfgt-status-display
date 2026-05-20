@@ -10,6 +10,5 @@
     "requestReservationsDataEnabled": true,
     "showQRCode": true,
     "landingQrUrl": "https://lszt.flightbox.aero/#/?t=7e692226-8445-45c2-9e67-4eb291cbd899",
-    "infoPdfUrl": "https://drive.google.com/file/d/1vtRaPVCjV9vWDlVLCYwmkvhCzUgdY7os/view?usp=sharing",
-    "infoPdfPage": 1
+    "infoPdfUrl": "/assets/info/info.pdf"
 }

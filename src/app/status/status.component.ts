@@ -89,14 +89,7 @@ export class StatusComponent implements OnInit {
                         this.settings['infoPdfPage'] = 1;
                     }
                     if (this.settings.infoPdfUrl) {
-                        let rawUrl = this.settings.infoPdfUrl;
-                        // convert Google Drive share links to direct download URL
-                        const driveMatch = rawUrl.match(/drive\.google\.com\/file\/d\/([^/?]+)/);
-                        if (driveMatch) {
-                            rawUrl = `https://drive.google.com/uc?export=download&id=${driveMatch[1]}`;
-                        }
-                        const viewerUrl = `https://view.officeapps.live.com/op/embed.aspx?src=${encodeURIComponent(rawUrl)}`;
-                        this.pdfUrl = this.sanitizer.bypassSecurityTrustResourceUrl(viewerUrl);
+                        this.pdfUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.settings.infoPdfUrl);
                     } else {
                         this.pdfUrl = null;
                     }
