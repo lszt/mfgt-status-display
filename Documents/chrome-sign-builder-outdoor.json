@@ -11,8 +11,8 @@
             "repetition": "d",
             "start": "Fri Jan 01 2016 00:00:00 GMT+0100",
             "zone": "fs",
-            "zoneHeight": "30%",
-            "zoneWidth": "30%",
+            "zoneHeight": "100%",
+            "zoneWidth": "100%",
             "zoneXOffset": "0",
             "zoneYOffset": "0"
           }
