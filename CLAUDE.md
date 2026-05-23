@@ -9,8 +9,9 @@ A kiosk/display-board Angular app for MFGT (Motorfluggruppe Thun), a Swiss aviat
 ## Commands
 
 ```bash
-npm start          # dev server at http://localhost:4200
-npm run build      # production build → dist/
+npm start          # dev server at http://localhost:4200 (default config: lszt-indoor1)
+npm run build      # production build → dist/ (default config: lszt-indoor1)
+CONFIG=lszt-outdoor1 npm run build   # build with a different per-deployment config
 npm test           # Karma/Jasmine unit tests (Chrome)
 npm run test-ci    # headless CI test run
 npm run lint       # TSLint
@@ -21,9 +22,9 @@ npm run e2e        # Protractor e2e tests
 
 **Single functional page.** The app has one real view: `StatusComponent` at `/status`. The root `**` wildcard redirects to `/not-found`; the root-path redirect is commented out in `app-routing.module.ts`.
 
-**Data flow.** `StatusComponent.updateStatus()` first calls `MfgtService.getConfig()` to load `src/assets/settings.json`, then calls `showStatus()` which fires individual API calls conditionally based on the loaded settings. All backend calls go to `https://api.mfgt.ch/api/v1/`.
+**Data flow.** `StatusComponent.updateStatus()` first calls `MfgtService.getConfig()` to load `/assets/settings.json`, then calls `showStatus()` which fires individual API calls conditionally based on the loaded settings. All backend calls go to `https://api.mfgt.ch/api/v1/`.
 
-**Runtime configuration via `src/assets/settings.json`.** This JSON file controls which panels are rendered and which API calls are made. Changing it takes effect on next page load without a rebuild. The component guards against missing keys with explicit `in` checks. Key fields:
+**Per-deployment configuration.** Each deployment's `settings.json` lives under `configs/<name>/settings.json` (e.g. `configs/lszt-indoor1`, `configs/lszt-outdoor1`). The active config is selected at build time via the `CONFIG` env var — `package.json` passes `--configuration production,${CONFIG:-lszt-indoor1}` to `ng build`. The matching `angular.json` configuration overrides the `assets` array so the chosen `configs/<name>/` directory is copied to `dist/assets/`, producing `dist/assets/settings.json`. There is **no committed `src/assets/settings.json`** — only deployment-specific files in `configs/`. To add a new deployment: create `configs/<name>/settings.json` and add matching `<name>` configuration blocks under `architect.build.configurations` and `architect.serve.configurations` in `angular.json`. Key fields:
 - `showEvents / showFlights / showReservations` — render the side panels
 - `requestAerodromeStatusDataEnabled / requestWeatherDataEnabled / requestEventsDataEnabled / requestFlightDataEnabled / requestReservationsDataEnabled` — gate the actual HTTP calls independently of rendering
 

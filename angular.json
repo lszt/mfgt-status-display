@@ -56,9 +56,33 @@
                                     "maximumError": "5mb"
                                 }
                             ]
+                        },
+                        "lszt-indoor1": {
+                            "assets": [
+                                {
+                                    "glob": "**/*",
+                                    "input": "configs/lszt-indoor1",
+                                    "output": "/assets"
+                                },
+                                "src/assets",
+                                "src/favicon.ico",
+                                "src/manifest.json"
+                            ]
+                        },
+                        "lszt-outdoor1": {
+                            "assets": [
+                                {
+                                    "glob": "**/*",
+                                    "input": "configs/lszt-outdoor1",
+                                    "output": "/assets"
+                                },
+                                "src/assets",
+                                "src/favicon.ico",
+                                "src/manifest.json"
+                            ]
                         }
                     },
-                    "defaultConfiguration": ""
+                    "defaultConfiguration": "lszt-indoor1"
                 },
                 "serve": {
                     "builder": "@angular-devkit/build-angular:dev-server",
@@ -68,8 +92,15 @@
                     "configurations": {
                         "production": {
                             "buildTarget": "test-ng7:build:production"
+                        },
+                        "lszt-indoor1": {
+                            "buildTarget": "test-ng7:build:lszt-indoor1"
+                        },
+                        "lszt-outdoor1": {
+                            "buildTarget": "test-ng7:build:lszt-outdoor1"
                         }
-                    }
+                    },
+                    "defaultConfiguration": "lszt-indoor1"
                 },
                 "extract-i18n": {
                     "builder": "@angular-devkit/build-angular:extract-i18n",
