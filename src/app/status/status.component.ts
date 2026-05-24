@@ -89,7 +89,9 @@ export class StatusComponent implements OnInit {
                         this.settings['infoPdfPage'] = 1;
                     }
                     if (this.settings.infoPdfUrl) {
-                        this.pdfUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.settings.infoPdfUrl);
+                        this.pdfUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
+                            this.settings.infoPdfUrl + '#toolbar=0&navpanes=0&scrollbar=0'
+                        );
                     } else {
                         this.pdfUrl = null;
                     }

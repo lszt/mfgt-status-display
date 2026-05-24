@@ -1,0 +1,14 @@
+{
+    "showEvents": false,
+    "showFlights": false,
+    "showReservations": false,
+    "showWeather": true,
+    "requestAerodromeStatusDataEnabled": true,
+    "requestWeatherDataEnabled": true,
+    "requestEventsDataEnabled": false,
+    "requestFlightDataEnabled": false,
+    "requestReservationsDataEnabled": false,
+    "showQRCode": true,
+    "landingQrUrl": "https://lszt.flightbox.aero/#/?t=7e692226-8445-45c2-9e67-4eb291cbd899",
+    "infoPdfUrl": "/assets/info/info.pdf"
+}

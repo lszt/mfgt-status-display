@@ -4,9 +4,9 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build --configuration production",
-    "gitbuild": "ng build --configuration production --base-href /start-angular/SB-Admin-BS4-Angular-8/master/dist/",
+    "start": "ng serve --configuration ${CONFIG:-lszt-indoor1}",
+    "build": "ng build --configuration production,${CONFIG:-lszt-indoor1}",
+    "gitbuild": "ng build --configuration production,${CONFIG:-lszt-indoor1} --base-href /start-angular/SB-Admin-BS4-Angular-8/master/dist/",
     "test": "ng test",
     "test-ci": "TEST_CI=true ng test",
     "lint": "ng lint",
