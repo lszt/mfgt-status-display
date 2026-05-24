@@ -4,7 +4,7 @@
 
 [build.environment]
   NODE_VERSION = "22"
-  CONFIG = "lszt-indoor1"
+  CONFIG = "lszt-outdoor1"
 
 [[redirects]]
   from = "/*"
