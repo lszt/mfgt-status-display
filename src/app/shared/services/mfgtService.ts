@@ -29,7 +29,7 @@ export class MfgtService {
     }
 
     getStatus(): Observable<any> {
-        const url = 'https://api.mfgt.ch/api/v1/aerodromestatus';
+        const url = 'https://lszt.flightbox.aero/api/aerodrome/status';
 
         /*
         {
